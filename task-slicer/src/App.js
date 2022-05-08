@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
+// **********************************************************
+// *                                                        *
+// *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
+// *                                                        *
+// **********************************************************
 function App() {
   return (
     <div className="App">
