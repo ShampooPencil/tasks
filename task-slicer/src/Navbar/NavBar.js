@@ -9,15 +9,15 @@ export default function NavBar() {
         <nav>
           <a href="https://www.geeksforgeeks.org/">Home</a> |
           <a href="https://www.geeksforgeeks.org/company-interview-corner/">
-            Interview
+            How It Works
           </a>{" "}
-          |<a href="https://www.geeksforgeeks.org/gate-cs-notes-gq/">Gate</a> |
+          |
           <a href="https://www.geeksforgeeks.org/data-structures/">
-            Data Structure
+            Login/Sign-Up
           </a>{" "}
           |
           <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/">
-            Algorithm
+            Contact
           </a>
         </nav>
       </div>
