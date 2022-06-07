@@ -1,5 +1,5 @@
 import React from "react";
 
-export function HowItWorks(props) {
+export function TaskSlicer(props) {
   return <></>;
 }

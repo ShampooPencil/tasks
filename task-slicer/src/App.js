@@ -1,5 +1,6 @@
 import "./App.css";
 import NavBar from "./Navbar/NavBar.js";
+import Home from "./Home/Home.js";
 
 // **********************************************************
 // *                                                        *
@@ -7,7 +8,12 @@ import NavBar from "./Navbar/NavBar.js";
 // *                                                        *
 // **********************************************************
 function App() {
-  return <NavBar />;
+  return (
+    <>
+      <NavBar />
+      <Home />
+    </>
+  );
 }
 
 export default App;

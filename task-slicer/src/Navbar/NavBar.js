@@ -1,4 +1,9 @@
 import React from "react";
+// import Home from "./Home/Home.js";
+// import TaskSlicer from "TaskSlicer/TaskSlicer.js";
+// import LoginOrSignup from "LoginOrSignup/LoginOrSignup.js";
+// import Contact from "Contact/Contact.js";
+
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
@@ -9,7 +14,7 @@ export default function NavBar() {
         <nav>
           <a href="https://www.geeksforgeeks.org/">Home</a> |
           <a href="https://www.geeksforgeeks.org/company-interview-corner/">
-            How It Works
+            TaskSlicer
           </a>{" "}
           |
           <a href="https://www.geeksforgeeks.org/data-structures/">
