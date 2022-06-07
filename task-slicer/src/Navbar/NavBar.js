@@ -1,19 +1,25 @@
 import React from "react";
-// import Home from "./Home/Home.js";
-// import TaskSlicer from "TaskSlicer/TaskSlicer.js";
+import { TaskSlicer } from "../TaskSlicer/TaskSlicer.js";
+// import TaskSlicer from "./TaskSlicer/TaskSlicer.js";
 // import LoginOrSignup from "LoginOrSignup/LoginOrSignup.js";
 // import Contact from "Contact/Contact.js";
 
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
+  function handleTaskSlicerClick() {
+    return <TaskSlicer />;
+  }
+
   //probably add props later on
   const taskSlicerNavBar = (
     <>
       <div className="navContainer">
         <nav>
-          <a href="https://www.geeksforgeeks.org/">Home</a> |
-          <a href="https://www.geeksforgeeks.org/company-interview-corner/">
+          <a
+            href="https://www.geeksforgeeks.org/company-interview-corner/"
+            onClick={handleTaskSlicerClick}
+          >
             TaskSlicer
           </a>{" "}
           |
@@ -26,6 +32,9 @@ export default function NavBar() {
           </a>
         </nav>
       </div>
+
+      {/* Defualt component/home */}
+      <TaskSlicer />
     </>
   );
 

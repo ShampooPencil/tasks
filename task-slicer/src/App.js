@@ -1,6 +1,5 @@
 import "./App.css";
 import NavBar from "./Navbar/NavBar.js";
-import Home from "./Home/Home.js";
 
 // **********************************************************
 // *                                                        *
@@ -11,7 +10,6 @@ function App() {
   return (
     <>
       <NavBar />
-      <Home />
     </>
   );
 }
