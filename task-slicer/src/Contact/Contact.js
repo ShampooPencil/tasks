@@ -1,7 +1,7 @@
 import React from "react";
 //import ReactDOM from "react-dom";
 
-export default function Contact(props) {
+export function Contact(props) {
   return (
     <>
       <h2>Contact Us</h2>

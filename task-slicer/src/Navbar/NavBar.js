@@ -6,12 +6,13 @@ import { Login } from "../LoginOrSignup/Login.js";
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
-  let toggleCompDisplay = false;
-  const [taskSlicerDisplay, loginDisplay, contactDisplay] = [
-    true,
-    false,
-    false,
-  ];
+  // let toggleCompDisplay = false;
+  let showMainDisplay = (
+    <div className="main-display">
+      <TaskSlicer />
+    </div>
+  ); //display when one of comps display are clicked on
+  let [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
   function handleTaskSlicerClick() {
     [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
   }
@@ -23,26 +24,27 @@ export default function NavBar() {
   }
   function compareDisplay() {
     if (taskSlicerDisplay === true) {
-      return (
+      showMainDisplay = (
         <div className="main-display">
           <TaskSlicer />
         </div>
       );
     }
     if (loginDisplay === true) {
-      return (
+      showMainDisplay = (
         <div className="main-display">
           <Login />
         </div>
       );
     }
     if (contactDisplay === true) {
-      return (
+      showMainDisplay = (
         <div className="main-display">
           <Contact />
         </div>
       );
     }
+    return showMainDisplay;
   }
 
   //6/7/2022 8pm
@@ -64,9 +66,7 @@ export default function NavBar() {
       </div>
 
       {/* Default component/home */}
-      <div className="main-display">
-        <TaskSlicer />
-      </div>
+      {compareDisplay}
     </>
   );
 
