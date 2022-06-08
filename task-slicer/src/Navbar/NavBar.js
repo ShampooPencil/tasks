@@ -15,12 +15,15 @@ export default function NavBar() {
   let [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
   function handleTaskSlicerClick() {
     [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
+    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
   }
   function handleLoginClick() {
     [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, true, false];
+    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
   }
   function handleContactClick() {
     [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, false, true];
+    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
   }
   function compareDisplay() {
     if (taskSlicerDisplay === true) {
@@ -44,6 +47,9 @@ export default function NavBar() {
         </div>
       );
     }
+    console.log(showMainDisplay);
+  }
+  function ShowMainCompDisplay() {
     return showMainDisplay;
   }
 
@@ -59,14 +65,21 @@ export default function NavBar() {
     <>
       <div className="navContainer">
         <nav>
-          <button onClick={handleTaskSlicerClick}>TaskSlicer</button> |
-          <button onClick={handleLoginClick}>Login</button> |
+          <button
+            onClick={() => {
+              handleTaskSlicerClick();
+              compareDisplay();
+            }}
+          >
+            TaskSlicer
+          </button>{" "}
+          |<button onClick={handleLoginClick}>Login</button> |
           <button onClick={handleContactClick}>Contact</button>
         </nav>
       </div>
 
       {/* Default component/home */}
-      {compareDisplay}
+      <div className="main-display">{ShowMainCompDisplay}</div>
     </>
   );
 
