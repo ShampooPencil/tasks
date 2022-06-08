@@ -1,17 +1,48 @@
 import React from "react";
+import { Contact } from "../Contact/Contact.js";
 import { TaskSlicer } from "../TaskSlicer/TaskSlicer.js";
 import { Login } from "../LoginOrSignup/Login.js";
-// import Contact from "Contact/Contact.js";
 
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
   let toggleCompDisplay = false;
+  const [taskSlicerDisplay, loginDisplay, contactDisplay] = [
+    true,
+    false,
+    false,
+  ];
   function handleTaskSlicerClick() {
-    toggleCompDisplay = false;
+    [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
   }
   function handleLoginClick() {
-    toggleCompDisplay = true;
+    [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, true, false];
+  }
+  function handleContactClick() {
+    [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, false, true];
+  }
+  function compareDisplay() {
+    if (taskSlicerDisplay === true) {
+      return (
+        <div className="main-display">
+          <TaskSlicer />
+        </div>
+      );
+    }
+    if (loginDisplay === true) {
+      return (
+        <div className="main-display">
+          <Login />
+        </div>
+      );
+    }
+    if (contactDisplay === true) {
+      return (
+        <div className="main-display">
+          <Contact />
+        </div>
+      );
+    }
   }
 
   //6/7/2022 8pm
@@ -28,14 +59,14 @@ export default function NavBar() {
         <nav>
           <button onClick={handleTaskSlicerClick}>TaskSlicer</button> |
           <button onClick={handleLoginClick}>Login</button> |
-          <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/">
-            Contact
-          </a>
+          <button onClick={handleContactClick}>Contact</button>
         </nav>
       </div>
 
       {/* Default component/home */}
-      {toggleCompDisplay ? <Login /> : <TaskSlicer />}
+      <div className="main-display">
+        <TaskSlicer />
+      </div>
     </>
   );
 
