@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Contact } from "../Contact/Contact.js";
 import { TaskSlicer } from "../TaskSlicer/TaskSlicer.js";
 import { Login } from "../LoginOrSignup/Login.js";
@@ -6,51 +6,24 @@ import { Login } from "../LoginOrSignup/Login.js";
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
-  // let toggleCompDisplay = false;
-  let showMainDisplay = (
-    <div className="main-display">
-      <TaskSlicer />
-    </div>
-  ); //display when one of comps display are clicked on
-  let [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
+  const [showDisplay, setDisplay] = useState(<TaskSlicer />);
+
   function handleTaskSlicerClick() {
-    [taskSlicerDisplay, loginDisplay, contactDisplay] = [true, false, false];
-    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
+    const showTaskSlicer = <TaskSlicer />;
+    setDisplay(showTaskSlicer);
+    // return showDisplay;
   }
+
   function handleLoginClick() {
-    [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, true, false];
-    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
+    const showLoginPage = <Login />;
+    setDisplay(showLoginPage);
+    console.log(showLoginPage);
+    // return showDisplay;
   }
   function handleContactClick() {
-    [taskSlicerDisplay, loginDisplay, contactDisplay] = [false, false, true];
-    console.log(taskSlicerDisplay, loginDisplay, contactDisplay);
-  }
-  function compareDisplay() {
-    if (taskSlicerDisplay === true) {
-      showMainDisplay = (
-        <div className="main-display">
-          <TaskSlicer />
-        </div>
-      );
-    }
-    if (loginDisplay === true) {
-      showMainDisplay = (
-        <div className="main-display">
-          <Login />
-        </div>
-      );
-    }
-    if (contactDisplay === true) {
-      showMainDisplay = (
-        <div className="main-display">
-          <Contact />
-        </div>
-      );
-    }
-    console.log(showMainDisplay);
-  }
-  function ShowMainCompDisplay() {
-    return showMainDisplay;
+    const showContactPage = <Contact />;
+    setDisplay(showContactPage);
+    // return showDisplay;
   }
 
   //6/7/2022 8pm
@@ -61,27 +34,22 @@ export default function NavBar() {
   // write some code on paper! or paper talk about on a recorder etc.
 
   //probably add props later on
-  const taskSlicerNavBar = (
-    <>
-      <div className="navContainer">
-        <nav>
-          <button
-            onClick={() => {
-              handleTaskSlicerClick();
-              compareDisplay();
-            }}
-          >
-            TaskSlicer
-          </button>{" "}
-          |<button onClick={handleLoginClick}>Login</button> |
-          <button onClick={handleContactClick}>Contact</button>
-        </nav>
-      </div>
+  function taskSlicerNavBar() {
+    return (
+      <>
+        <div className="navContainer">
+          <nav>
+            <button onClick={handleTaskSlicerClick}>TaskSlicer</button> |
+            <button onClick={handleLoginClick}>Login</button> |
+            <button onClick={handleContactClick}>Contact</button>
+          </nav>
+        </div>
 
-      {/* Default component/home */}
-      <div className="main-display">{ShowMainCompDisplay}</div>
-    </>
-  );
+        {/* Default component/home */}
+        <div className="main-display">{showDisplay}</div>
+      </>
+    );
+  }
 
-  return taskSlicerNavBar;
+  return taskSlicerNavBar();
 }
