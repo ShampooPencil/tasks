@@ -11,19 +11,16 @@ export default function NavBar() {
   function handleTaskSlicerClick() {
     const showTaskSlicer = <TaskSlicer />;
     setDisplay(showTaskSlicer);
-    // return showDisplay;
   }
 
   function handleLoginClick() {
     const showLoginPage = <Login />;
     setDisplay(showLoginPage);
     console.log(showLoginPage);
-    // return showDisplay;
   }
   function handleContactClick() {
     const showContactPage = <Contact />;
     setDisplay(showContactPage);
-    // return showDisplay;
   }
 
   //6/7/2022 8pm
