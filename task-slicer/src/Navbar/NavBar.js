@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Contact } from "../Contact/Contact.js";
 import { TaskSlicer } from "../TaskSlicer/TaskSlicer.js";
 import { Login } from "../LoginOrSignup/Login.js";
-
+// import "./App.css";
 // import ReactDOM from 'react-dom';
 
 export default function NavBar() {
@@ -42,8 +42,10 @@ export default function NavBar() {
           </nav>
         </div>
 
-        {/* Default component/home */}
-        <div className="main-display">{showDisplay}</div>
+        {/*First: create a card-like Forum for Logging in/Loggin out
+        and also signup under login
+        (maybe draw or whiteboard the generally blueprints of it*/}
+        <div className="navContainer">{showDisplay}</div>
       </>
     );
   }
