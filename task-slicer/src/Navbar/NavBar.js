@@ -45,7 +45,7 @@ export default function NavBar() {
         {/*First: create a card-like Forum for Logging in/Loggin out
         and also signup under login
         (maybe draw or whiteboard the generally blueprints of it*/}
-        <div className="navContainer">{showDisplay}</div>
+        <div>{showDisplay}</div>
       </>
     );
   }

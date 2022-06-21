@@ -1,3 +1,4 @@
+import React from 'react';
 import "./App.css";
 import NavBar from "./Navbar/NavBar.js";
 
@@ -26,7 +27,11 @@ import NavBar from "./Navbar/NavBar.js";
 function App() {
   return (
     <>
-      <NavBar />
+      <div className='container'>
+        <div className='card'>
+          <NavBar />
+        </div>
+      </div>
     </>
   );
 }
