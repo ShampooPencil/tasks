@@ -18,6 +18,7 @@ export function TaskSlicer() {
           className="login"
           type="text"
           name="email"
+          placeholder="taskSlicer@gmail.com"
           value={login}
           onChange={(event) => setLogin(event.target.value)}
         />
@@ -26,6 +27,7 @@ export function TaskSlicer() {
           className="password"
           type="text"
           name="password"
+          placeholder="**********"
           value={pass_word}
           onChange={(event) => setPassWord(event.target.value)}
         />
