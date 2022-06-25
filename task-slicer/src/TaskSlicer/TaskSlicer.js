@@ -9,10 +9,6 @@ export function TaskSlicer() {
   console.log(pass_word)
   return (
     <>
-
-
-
-
       <div className="container2">
         <h2>TaskSlicer</h2>
         <input className="login" type="text" name="email" value={login} onChange={event => setLogin(event.target.value)} />
