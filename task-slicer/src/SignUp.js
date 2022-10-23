@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SignUp(props) {
+export function SignUp(props) {
   return (
     <>
       <form>

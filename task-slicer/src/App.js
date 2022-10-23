@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
-import NavBar from "./Navbar/NavBar.js";
+import { NavBar } from "./NavBar.js";
 
 // **********************************************************
 // *                                                        *
@@ -24,16 +24,14 @@ import NavBar from "./Navbar/NavBar.js";
 //   *SAVE* THE USERNAME/EMAIL AND PASSWORD SO IT IS STORED IN THE SITE)
 //5. DONT WORRY ABOUT STYLE YET. JUST WORK ON THE STRUCTURE OF THE SITE AND CORE OF SITE!
 
-function App() {
+export default function App() {
   return (
     <>
-      <div className='container'>
-        <div className='card'>
+      <div className="container">
+        <div className="card">
           <NavBar />
         </div>
       </div>
     </>
   );
 }
-
-export default App;

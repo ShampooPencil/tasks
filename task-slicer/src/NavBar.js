@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Contact } from "../Contact/Contact.js";
-import { TaskSlicer } from "../TaskSlicer/TaskSlicer.js";
-import { Login } from "../LoginOrSignup/Login.js";
+import { useState } from "react";
+import { Contact } from "./Contact.js";
+import { TaskSlicer } from "./TaskSlicer.js";
+import { Login } from "./Login.js";
 // import "./App.css";
 // import ReactDOM from 'react-dom';
 
-export default function NavBar() {
+export function NavBar() {
   const [showDisplay, setDisplay] = useState(<TaskSlicer />);
 
   function handleTaskSlicerClick() {
