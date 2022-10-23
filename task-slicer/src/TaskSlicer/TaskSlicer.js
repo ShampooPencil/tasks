@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SignUp from "../LoginOrSignup/SignUp.js";
 import Login from "../LoginOrSignup/Login.js";
 
+
 export function TaskSlicer() {
   //First-Goal: this component is going to be the login/log out and signup component
   //(add those components later on this component)
