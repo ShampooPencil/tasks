@@ -6,3 +6,30 @@
 //2. WHEN FIRST TASKS IN COMPLETE AND SHOWED, HAVE MINUS SIGN ON THE RIGHT SIDE, AN EMPTY CIRCLE ON THE LEFT SIDE AND
 //   PLUS SIGN ABOVE/OR BELOW(NOT SURE WHAT SIDE YET)
 //........THATS WOULD BE A GOOD START AND ADD MORE GOALS/STEPS AS I GO AFTER ONE STEP IS DONE
+import React, { useState, useEffect } from "react";
+
+export function QuickList() {
+  const [task, setTask] = useState([]);
+  const [input, setInput] = useState();
+
+  function handleAddTask() {
+    //first problem: show plus(+) sign and when clicked on, input would pop-up.
+  }
+  function handleInputClick() {
+    //this will be the onClick function when user clicks on plus sign first
+    const taskInput = <input></input>;
+    setInput(...input, taskInput);
+  }
+
+  return (
+    <>
+      <div className="container">
+        <button className="addTask" onClick={() => handleInputClick}>
+          +
+        </button>
+        {input}
+        {/*add map to show current task(s) */}
+      </div>
+    </>
+  );
+}

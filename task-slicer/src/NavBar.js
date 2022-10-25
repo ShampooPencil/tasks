@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Contact } from "./Contact.js";
 import { TaskSlicer } from "./TaskSlicer.js";
 import { Login } from "./Login.js";
+import { QuickList } from "./QuickList";
 // import "./App.css";
 // import ReactDOM from 'react-dom';
 
@@ -22,6 +23,11 @@ export function NavBar() {
     const showContactPage = <Contact />;
     setDisplay(showContactPage);
   }
+  function handleQuickListClick() {
+    const showQuickListPage = <QuickList />;
+    setDisplay(showQuickListPage);
+    console.log(showQuickListPage);
+  }
 
   //6/7/2022 8pm
   //Next time: Try to figure out a system so I can click a NavBar button and
@@ -36,9 +42,10 @@ export function NavBar() {
       <>
         <div className="navContainer">
           <nav>
-            <button onClick={handleTaskSlicerClick}>TaskSlicer</button> |
-            <button onClick={handleLoginClick}>Login</button> |
-            <button onClick={handleContactClick}>Contact</button>
+            ||<button onClick={handleTaskSlicerClick}>TaskSlicer</button> ||
+            <button onClick={handleLoginClick}>Login</button> ||
+            <button onClick={handleContactClick}>Contact</button> ||
+            <button onClick={handleQuickListClick}>QuickList</button>||
           </nav>
         </div>
 
