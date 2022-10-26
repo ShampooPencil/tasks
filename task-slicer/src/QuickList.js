@@ -15,8 +15,10 @@ export function QuickList() {
   function handleAddTask() {
     //first problem: show plus(+) sign and when clicked on, input would pop-up.
     let addTask = prompt("Enter Task:");
-    setTask([...tasks, addTask]);
-    console.log(tasks);
+    if (addTask !== null && addTask !== "") {
+      setTask([...tasks, addTask]);
+      console.log(tasks);
+    }
   }
   function handleInputClick() {
     //this will be the onClick function when user clicks on plus sign first
@@ -26,7 +28,8 @@ export function QuickList() {
 
   return (
     <>
-      <div className="container">
+      <div className="container-quickList">
+        {/*next time, make a new column container for the QuickList page */}
         <ul>
           {tasks.map((task) => {
             return <li>{task}</li>;
