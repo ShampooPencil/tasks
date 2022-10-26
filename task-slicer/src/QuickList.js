@@ -9,11 +9,14 @@
 import React, { useState, useEffect } from "react";
 
 export function QuickList() {
-  const [task, setTask] = useState([]);
+  const [tasks, setTask] = useState([]);
   const [input, setInput] = useState();
 
   function handleAddTask() {
     //first problem: show plus(+) sign and when clicked on, input would pop-up.
+    let addTask = prompt("Enter Task:");
+    setTask([...tasks, addTask]);
+    console.log(tasks);
   }
   function handleInputClick() {
     //this will be the onClick function when user clicks on plus sign first
@@ -24,10 +27,14 @@ export function QuickList() {
   return (
     <>
       <div className="container">
-        <button className="addTask" onClick={() => handleInputClick}>
+        <ul>
+          {tasks.map((task) => {
+            return <li>{task}</li>;
+          })}
+        </ul>
+        <button className="addTask" onClick={handleAddTask}>
           +
         </button>
-        {input}
         {/*add map to show current task(s) */}
       </div>
     </>
