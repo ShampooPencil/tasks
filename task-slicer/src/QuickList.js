@@ -31,14 +31,18 @@ export function QuickList() {
       <div className="container-quickList">
         {/*next time, make a new column container for the QuickList page */}
         <ul>
-          {tasks.map((task) => {
-            return <li>{task}</li>;
+          {tasks.map((task, index) => {
+            return <li key={index}>{task}</li>;
           })}
         </ul>
         <button className="addTask" onClick={handleAddTask}>
           +
         </button>
-        {/*add map to show current task(s) */}
+        {/*add map to show current task(s) 
+         EXAMPLE:*******
+         {transactions.map(
+                (transaction, index) => <li key={index}>{transaction}</li>
+          )}*/}
       </div>
     </>
   );
