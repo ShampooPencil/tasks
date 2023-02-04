@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //probably add props later on
-export default function taskSlicerNavBar() {
+export default function NavBar() {
   return (
     <>
       <div className="navContainer">
@@ -10,10 +10,10 @@ export default function taskSlicerNavBar() {
           <NavLink to="/" className="navLinks">
             Home
           </NavLink>
-          <NavLink to="contact" className="navLinks">
+          <NavLink to="/contact" className="navLinks">
             Contact
           </NavLink>
-          <NavLink to="taskslicer" className="navLinks">
+          <NavLink to="/taskslicer" className="navLinks">
             TaskSlicer
           </NavLink>
         </nav>
