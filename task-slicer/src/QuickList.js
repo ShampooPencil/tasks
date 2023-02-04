@@ -12,6 +12,7 @@ export function QuickList() {
   const [tasks, setTask] = useState([]);
   const [input, setInput] = useState();
 
+  
   function handleAddTask() {
     //first problem: show plus(+) sign and when clicked on, input would pop-up.
     let addTask = prompt("Enter Task:");
