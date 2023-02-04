@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 export default function NavBar() {
   return (
     <>
-      <div className="navContainer">
-        <nav>
+      <div>
+        <nav className="navContainer">
           <NavLink to="/" className="navLinks">
             Home
           </NavLink>

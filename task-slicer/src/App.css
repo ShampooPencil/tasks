@@ -3,7 +3,7 @@
   *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
   *                                                        *
   ********************************************************** */
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -48,6 +48,6 @@
 /* side note: dont know why TaskSlicer(under login/signup isnt 
 exactly centered enough? */
 
-.card:hover {
+/* .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
+} */
