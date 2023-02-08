@@ -3,6 +3,20 @@
   *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
   *                                                        *
   ********************************************************** */
+  :root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.dark {
+    --bg-color: #222; /* almost black */
+    --text-color: white;
+}
   .navContainer {
     display: flex;
     flex-direction: row;
