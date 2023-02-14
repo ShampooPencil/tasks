@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import ViewTasks from "./ViewTasks.js";
 
-export default function FormTask() {
+export default function FormTask(props) {
   const [tasks, setTasks] = useState([]);
-  const [taskName, setTaskName] = useState();
-  const [description, setDescription] = useState();
+  const [taskName, setTaskName] = useState([]);
+  const [description, setDescription] = useState([]);
 
-  const handleSubmit = (event) => {
-    console.log("Task was submitted!");
-  };
+  // const handleSubmit = (event) => {
+  //   console.log("Task was submitted!");
+  // };
+  useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
+
+  function onSubmit(e) {
+    e.preventDefault();
+  }
   function handleNameChange(e) {
     setTaskName(e.target.value);
     console.log(taskName);
@@ -27,7 +36,8 @@ export default function FormTask() {
     //   setValidation(validate + 1)
   }
   function handleFormSubmit(e) {
-    if (tasks[taskName] === "" || tasks[description] === "") {
+    console.log(tasks);
+    if (taskName === "" || description === "") {
       return e.preventDefault();
     } else {
       return handleTaskSubmit();
@@ -35,16 +45,31 @@ export default function FormTask() {
   }
   return (
     <div className="card">
-      <form onSubmit={handleFormSubmit}>
-        <input
-          id="taskName"
-          type="text"
-          placeholder="Task"
-          onChange={handleNameChange}
-        />
-        <input id="description" type="text" placeholder="Enter Description" />
-        <button type="submit">+</button>
-      </form>
+      <input
+        id="taskName"
+        type="text"
+        placeholder="Task"
+        onChange={handleNameChange}
+      />
+      <input
+        id="description"
+        type="text"
+        placeholder="Enter Description"
+        onChange={handleDescriptionChange}
+      />
+      <input type="submit" value="+" onClick={handleTaskSubmit} />
+      <div className="products-grid">
+        {/* {loading && <Loader />} */}
+        <ul>
+          {tasks.map((task) => {
+            return (
+              <li>
+                <ViewTasks key={task.id} details={task}></ViewTasks>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
