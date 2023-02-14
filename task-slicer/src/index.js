@@ -8,6 +8,7 @@ import NavBar from "./NavBar.js";
 import Contact from "./Contact.js";
 import TaskSlicer from "./TaskSlicer.js";
 import Home from "./Home.js";
+import FormTask from "./FormTask";
 // import DarkTheme from "./DarkTheme";
 // import { Login } from "./Login.js";
 // import { QuickList } from "./QuickList";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
+            <Route path="/formtask" element={<FormTask />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

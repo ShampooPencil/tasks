@@ -11,6 +11,7 @@ export default function DarkTheme() {
       document.body.classList.remove("dark");
     }
   }, [isDarkTheme]);
+
   function toggleTheme() {
     setIsDarkTheme(!isDarkTheme);
     if (theme === "Light") {
