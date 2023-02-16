@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks.js";
-import clsx from "clsx";
+// import clsx from "clsx";
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState([]);
@@ -37,6 +37,13 @@ export default function TaskSlicer() {
       ]);
       setTaskName([]);
       setDescription([]);
+      setInputClass("hideInput");
+      // if(showInputClass === "showInput"){
+      //   setInputClass("hideInput");
+      // }else{
+      //   setInputClass("showInput")
+      // }
+
 
       //   setValidation(validate + 1)
     }
@@ -90,7 +97,7 @@ export default function TaskSlicer() {
     if (showTaskInput) {
       setTaskInput(false);
       // setAddBtn(false);
-      setInputClass("hideInput");
+      setInputClass("showInput");
       console.log(addBtn);
       console.log(showTaskInput);
     } else {
@@ -104,7 +111,7 @@ export default function TaskSlicer() {
     <>
       <div className="card">
         {/* <NavLink to="/formtask" className="navLinks"> */}
-        <button className="showAddBtn" onClick={() => showTaskInputs}>
+        <button className="showAddBtn" onClick={showTaskInputs}>
           +New Task
         </button>
         {setTaskInput ? FormTask() : ""}
