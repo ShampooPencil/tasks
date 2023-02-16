@@ -8,6 +8,9 @@ import NavBar from "./NavBar.js";
 import Contact from "./Contact.js";
 import TaskSlicer from "./TaskSlicer.js";
 import Home from "./Home.js";
+// import FormTask from "./FormTask";
+
+// import DarkTheme from "./DarkTheme";
 // import { Login } from "./Login.js";
 // import { QuickList } from "./QuickList";
 // **********************************************************
@@ -16,16 +19,21 @@ import Home from "./Home.js";
 // *                                                        *
 // **********************************************************
 function App() {
+  //toggle black or white theme
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  console.log(prefersDark); // either true or false (depending on your OS preference)
   return (
     <>
       {/* <div className="card"> */}
       <BrowserRouter>
+        {/* <DarkTheme /> */}
         <NavBar />
-        <div className="container">
+        <div className="container dark">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
+            {/* <Route path="/formtask" element={<FormTask />}></Route> */}
           </Routes>
         </div>
       </BrowserRouter>

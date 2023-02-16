@@ -1,37 +1,114 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import ViewTasks from "./ViewTasks.js";
+import clsx from "clsx";
 export default function TaskSlicer() {
-  const [task, setTasks] = useState([])
-  // 2/4/23UPDATE: just work on the app itself and don't worry about logins or signups right nowFirst-Goal: this component is going to be the login/log out and signup component
-  // (add those components later on this component)
-  // const [login, setLogin] = useState("");
-  // const [pass_word, setPassWord] = useState("");
-  // console.log(login);
-  const addTaskInput = <input type="text"></input>
-  function openPrompt() {
-    return addTaskInput
+  const [tasks, setTasks] = useState([]);
+  const [taskName, setTaskName] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [addBtn, setAddBtn] = useState(true);
+  const [showTaskInput, setTaskInput] = useState(false);
+  const [showInputClass, setInputClass] = useState("hideInput");
+
+  function FormTask() {
+    // const handleSubmit = (event) => {
+    //   console.log("Task was submitted!");
+    // };
+    useEffect(() => {
+      console.log(tasks);
+    }, [tasks]);
+
+    function onSubmit(e) {
+      e.preventDefault();
+    }
+    function handleNameChange(e) {
+      setTaskName(e.target.value);
+      console.log(taskName);
+      // setValidation(0)
+    }
+    function handleDescriptionChange(e) {
+      setDescription(e.target.value);
+      console.log(description);
+    }
+    function handleTaskSubmit() {
+      setTasks((current) => [
+        ...current,
+        ...[{ id: tasks.length, name: taskName, description: description }],
+      ]);
+      setTaskName([]);
+      setDescription([]);
+
+      //   setValidation(validate + 1)
+    }
+    function handleFormSubmit(e) {
+      console.log(tasks);
+      if (taskName === "" || description === "") {
+        return e.preventDefault();
+      } else {
+        return handleTaskSubmit();
+      }
+    }
+    return (
+      <div className="card">
+        <input
+          className={showInputClass}
+          id="taskName"
+          type="text"
+          placeholder="Task"
+          onChange={handleNameChange}
+        />
+        <input
+          id="description"
+          className={showInputClass}
+          type="text"
+          placeholder="Enter Description"
+          onChange={handleDescriptionChange}
+        />
+        <input
+          className={showInputClass}
+          type="submit"
+          value="+"
+          onClick={handleTaskSubmit}
+        />
+        <div className="products-grid">
+          {/* {loading && <Loader />} */}
+          <ul>
+            {tasks.map((task) => {
+              return (
+                <li>
+                  <ViewTasks key={task.id} details={task}></ViewTasks>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    );
   }
-  function clickNewTaskForm() {
-    // for clicking on new task button
-    openPrompt()
-    setTasks([...task, addTaskInput]);
-    console.log(task);
+
+  function showTaskInputs() {
+    if (showTaskInput) {
+      setTaskInput(false);
+      // setAddBtn(false);
+      setInputClass("hideInput");
+      console.log(addBtn);
+      console.log(showTaskInput);
+    } else {
+      setTaskInput(true);
+      setInputClass("showInput");
+      console.log(showTaskInput);
+    }
   }
-  function handleAddNewTask() {
-    // add new task to state
-  }
+
   return (
     <>
-      {/* challenge: when first adding a task, show the task (or more) and remove the <p></p>  */}
       <div className="card">
-        {/* 1. click on new tasks
-            -create a function so the user can type its new task */}
-        <button onClick={() => clickNewTaskForm}>+ New Task</button>
-        {/* 2. create handle function so when click on add the task, it will store it to task state
-             -test if new task is added to task state
-             -might have to create a new state so task is immutable */}
-
-        {/* 3. use a map similar method to show new tasks on the page */}
+        {/* <NavLink to="/formtask" className="navLinks"> */}
+        <button className="showAddBtn" onClick={() => showTaskInputs}>
+          +New Task
+        </button>
+        {setTaskInput ? FormTask() : ""}
+        {/* </NavLink> */}
       </div>
     </>
   );
