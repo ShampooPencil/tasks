@@ -56,7 +56,7 @@ export default function TaskSlicer() {
       }
     }
     return (
-      <div className="card">
+      <div>
         <input
           className={showInputClass}
           id="taskName"
@@ -77,18 +77,18 @@ export default function TaskSlicer() {
           value="+"
           onClick={handleTaskSubmit}
         />
-        <div className="products-grid">
+        {/* <div className="products-grid">
           {/* {loading && <Loader />} */}
-          <ul>
+          {/* {taskName !== "" ? */}
+          {/* <ul>
             {tasks.map((task) => {
+              
               return (
-                <li>
-                  <ViewTasks key={task.id} details={task}></ViewTasks>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
+              )
+            })} */}
+          {/* </ul> : ""} */} 
+        {/* </div> */}
       </div>
     );
   }
@@ -109,13 +109,23 @@ export default function TaskSlicer() {
 
   return (
     <>
-      <div className="card">
-        {/* <NavLink to="/formtask" className="navLinks"> */}
+      <div className="tasks-view">
         <button className="showAddBtn" onClick={showTaskInputs}>
           +New Task
         </button>
         {setTaskInput ? FormTask() : ""}
-        {/* </NavLink> */}
+        <div className="products-grid">
+          {/* {loading && <Loader />} */}
+          {taskName !== "" ?
+          <ul>
+            {tasks.map((task) => {
+              
+              return (
+                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
+              )
+            })}
+          </ul> : ""}
+        </div>
       </div>
     </>
   );
