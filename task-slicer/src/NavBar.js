@@ -8,14 +8,11 @@ export default function NavBar() {
       <div>
         <nav className="navContainer">
           <DarkTheme />
-          <NavLink to="/" className="navLinks">
-            Home
+          <NavLink to="/taskslicer" className="navLinks">
+            TaskSlicer
           </NavLink>
           <NavLink to="/contact" className="navLinks">
             Contact
-          </NavLink>
-          <NavLink to="/taskslicer" className="navLinks">
-            TaskSlicer
           </NavLink>
         </nav>
       </div>

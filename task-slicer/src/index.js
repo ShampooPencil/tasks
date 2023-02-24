@@ -3,11 +3,10 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 // import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import NavBar from "./NavBar.js";
 import Contact from "./Contact.js";
 import TaskSlicer from "./TaskSlicer.js";
-import Home from "./Home.js";
+// import Home from "./Home.js";
 // import FormTask from "./FormTask";
 
 // import DarkTheme from "./DarkTheme";
@@ -30,7 +29,7 @@ function App() {
         <NavBar />
         <div className="container dark">
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            {/* <Route path="/" element={<Home />}></Route> */}
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
             {/* <Route path="/formtask" element={<FormTask />}></Route> */}

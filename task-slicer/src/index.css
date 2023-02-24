@@ -1,8 +1,3 @@
-/***********************************************************
-  *                                                        *
-  *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
-  *                                                        *
-  ********************************************************** */
   :root {
     --bg-color: white;
     --text-color: black;
@@ -17,7 +12,7 @@ body.dark {
     --bg-color: #222; /* almost black */
     --text-color: white;
 }
-  .navContainer {
+.navContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -26,13 +21,14 @@ body.dark {
     background-color:coral;
     padding: 10vh;
   
-  }
+}
 .container {
   height: 100%;
   display: grid;
   grid-gap: 3px;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 40px auto 40px;
+  /* grid-template-columns: [main-start] repeat(12, 1fr) [main-last]; */
+  grid-template-columns: [main-start] [main-last];
+  grid-template-rows: [main-start] 40px auto 40px [main-last];
   justify-content: center;
   /* grid-template-areas: 
       ". h h h h h h h h h h ."
@@ -41,10 +37,14 @@ body.dark {
 } */
 }
 .tasks-view{
-  grid-column: 1 / 3;
-  justify-content: center;
+  grid-column: main-start / main-last;
   /* grid-row: 1 / 3; */
 }
+/***********************************************************
+  *                                                        *
+  *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
+  *                                                        *
+  ********************************************************** */
 
 
 /* .card {
@@ -63,9 +63,9 @@ body.dark {
 /* side note: dont know why TaskSlicer(under login/signup isnt 
 exactly centered enough? */
 
-.card:hover {
+/* .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
+} */
 .showInput {
   display:block;
 }

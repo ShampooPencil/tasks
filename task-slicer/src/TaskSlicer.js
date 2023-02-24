@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import ViewTasks from "./ViewTasks.js";
+import ViewTasks from "./ViewTasks";
 // import clsx from "clsx";
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState([]);
-  const [taskName, setTaskName] = useState([]);
-  const [description, setDescription] = useState([]);
+  const [taskName, setTaskName] = useState("");
+  const [description, setDescription] = useState("");
   const [addBtn, setAddBtn] = useState(true);
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
@@ -35,17 +35,9 @@ export default function TaskSlicer() {
         ...current,
         ...[{ id: tasks.length, name: taskName, description: description }],
       ]);
-      setTaskName([]);
-      setDescription([]);
+      setTaskName("");
+      setDescription("");
       setInputClass("hideInput");
-      // if(showInputClass === "showInput"){
-      //   setInputClass("hideInput");
-      // }else{
-      //   setInputClass("showInput")
-      // }
-
-
-      //   setValidation(validate + 1)
     }
     function handleFormSubmit(e) {
       console.log(tasks);
@@ -62,6 +54,7 @@ export default function TaskSlicer() {
           id="taskName"
           type="text"
           placeholder="Task"
+          value={taskName}
           onChange={handleNameChange}
         />
         <input
@@ -69,25 +62,26 @@ export default function TaskSlicer() {
           className={showInputClass}
           type="text"
           placeholder="Enter Description"
+          value={description}
           onChange={handleDescriptionChange}
         />
         <input
           className={showInputClass}
           type="submit"
           value="+"
-          onClick={handleTaskSubmit}
+          onClick={taskName && description !== "" ? handleTaskSubmit : ""}
         />
         {/* <div className="products-grid">
           {/* {loading && <Loader />} */}
-          {/* {taskName !== "" ? */}
-          {/* <ul>
+        {/* {taskName !== "" ? */}
+        {/* <ul>
             {tasks.map((task) => {
               
               return (
                  <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
               )
             })} */}
-          {/* </ul> : ""} */} 
+        {/* </ul> : ""} */}
         {/* </div> */}
       </div>
     );
@@ -109,23 +103,21 @@ export default function TaskSlicer() {
 
   return (
     <>
-      <div className="tasks-view">
-        <button className="showAddBtn" onClick={showTaskInputs}>
-          +New Task
-        </button>
-        {setTaskInput ? FormTask() : ""}
-        <div className="products-grid">
-          {/* {loading && <Loader />} */}
-          {taskName !== "" ?
-          <ul>
-            {tasks.map((task) => {
-              
-              return (
-                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
-              )
-            })}
-          </ul> : ""}
-        </div>
+      <button className="showAddBtn" onClick={showTaskInputs}>
+        +New Task
+      </button>
+      {setTaskInput ? FormTask() : ""}
+      <div className="products-grid">
+        {/* {loading && <Loader />} */}
+        <ul>
+          {tasks.map((task) => {
+            return (
+              <li>
+                <ViewTasks key={task.id} details={task}></ViewTasks>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );
