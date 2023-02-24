@@ -71,18 +71,6 @@ export default function TaskSlicer() {
           value="+"
           onClick={taskName && description !== "" ? handleTaskSubmit : ""}
         />
-        {/* <div className="products-grid">
-          {/* {loading && <Loader />} */}
-        {/* {taskName !== "" ? */}
-        {/* <ul>
-            {tasks.map((task) => {
-              
-              return (
-                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
-              )
-            })} */}
-        {/* </ul> : ""} */}
-        {/* </div> */}
       </div>
     );
   }
