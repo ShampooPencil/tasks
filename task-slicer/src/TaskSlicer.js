@@ -15,7 +15,9 @@ export default function TaskSlicer() {
     //   console.log("Task was submitted!");
     // };
     useEffect(() => {
-      console.log(tasks);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      const saved = localStorage.getItem("tasks");
+      const initialValue = JSON.parse(saved);
     }, [tasks]);
 
     function onSubmit(e) {
@@ -39,14 +41,14 @@ export default function TaskSlicer() {
       setDescription("");
       setInputClass("hideInput");
     }
-    function handleFormSubmit(e) {
-      console.log(tasks);
-      if (taskName === "" || description === "") {
-        return e.preventDefault();
-      } else {
-        return handleTaskSubmit();
-      }
-    }
+    // function handleFormSubmit(e) {
+    //   console.log(tasks);
+    //   if (taskName === "" || description === "") {
+    //     return e.preventDefault();
+    //   } else {
+    //     return handleTaskSubmit();
+    //   }
+    // }
     return (
       <div>
         <input
@@ -97,15 +99,14 @@ export default function TaskSlicer() {
       {setTaskInput ? FormTask() : ""}
       <div className="products-grid">
         {/* {loading && <Loader />} */}
-        <ul>
-          {tasks.map((task) => {
-            return (
-              <li>
-                <ViewTasks key={task.id} details={task}></ViewTasks>
-              </li>
-            );
-          })}
-        </ul>
+
+        {tasks.map((task) => {
+          return (
+            <div>
+              <ViewTasks key={task.id} details={task}></ViewTasks>
+            </div>
+          );
+        })}
       </div>
     </>
   );

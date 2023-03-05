@@ -9,11 +9,11 @@ export default function NavBar() {
         <nav className="navContainer">
           <DarkTheme />
           <NavLink to="/taskslicer" className="navLinks">
-            TaskSlicer
+            <div className="taskSlicerFontName">TaskSlicer</div>
           </NavLink>
-          <NavLink to="/contact" className="navLinks">
+          {/* <NavLink to="/contact" className="navLinks">
             Contact
-          </NavLink>
+          </NavLink> */}
         </nav>
       </div>
     </>

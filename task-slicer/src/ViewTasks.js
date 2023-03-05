@@ -5,8 +5,11 @@ export default function ViewTasks(props) {
 
   return (
     <div className="task-info">
-      <h3>{details.name}</h3>
-      <p>{details.description}</p>
+      <label className="task-name">
+        <input type="checkbox" />
+        {details.name}
+        <p className="task-description">{details.description}</p>
+      </label>
     </div>
   );
 }
