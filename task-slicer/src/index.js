@@ -4,6 +4,18 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
+
+/* 3/5/23
+NEXT COUPLE OF CHALLENGES:
+  -store a list and put them in another page
+    -probably going to make a new page that saves and stored the list that the users wants
+     to keep with them
+  -learn on to save data on a page so if it refreshes it still saves and shows on page
+  -still dont worry to much of css grid etc ill do that in the end
+
+
+*/
+
 function App() {
   //toggle black or white theme
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
