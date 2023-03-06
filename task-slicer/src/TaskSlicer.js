@@ -15,8 +15,9 @@ export default function TaskSlicer() {
 
   function FormTask() {
     useEffect(() => {
+      console.log(saveTasks);
       return localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+    }, [saveTasks]);
     // function onSubmit(e) {
     //   e.preventDefault();
     // }
@@ -34,7 +35,11 @@ export default function TaskSlicer() {
         ...current,
         ...[{ id: tasks.length, name: taskName, description: description }],
       ]);
-      setSaveTasks((savedtask) => [...savedtask, ...[tasks]]);
+      setSaveTasks((current) => [
+        ...current,
+        { id: tasks.length, name: taskName, description: description },
+      ]);
+      console.log(saveTasks);
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
