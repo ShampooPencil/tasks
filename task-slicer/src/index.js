@@ -4,9 +4,11 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
+import Login from "./Login";
 
 /* 3/5/23
 NEXT COUPLE OF CHALLENGES:
+  -Going to first put login page as the home page.
   -store a list and put them in another page
     -probably going to make a new page that saves and stored the list that the users wants
      to keep with them
@@ -26,6 +28,7 @@ function App() {
         <NavBar />
         <div className="container dark">
           <Routes>
+            <Route path="/" element={<Login />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
           </Routes>
         </div>
@@ -40,8 +43,18 @@ function App() {
 // *                                                        *
 // **********************************************************
 
-createRoot(document.querySelector("#react-root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Specific to this project: makes it possible for you to reload the page
+const root = createRoot(document.querySelector("#react-root"));
+const reload = () => {
+  console.log("Page reloaded");
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+};
+reload();
+// const button = document.createElement("button");
+// button.textContent = "Reload page";
+// button.addEventListener("click", reload);
+// document.body.insertAdjacentElement("afterbegin", button);

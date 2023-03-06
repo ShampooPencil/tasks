@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 // import clsx from "clsx";
 export default function TaskSlicer() {
+  const [saveTasks, setSaveTasks] = useState(() => {
+    return JSON.parse(localStorage.getItem("tasks"));
+  });
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
@@ -11,18 +14,12 @@ export default function TaskSlicer() {
   const [showInputClass, setInputClass] = useState("hideInput");
 
   function FormTask() {
-    // const handleSubmit = (event) => {
-    //   console.log("Task was submitted!");
-    // };
     useEffect(() => {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-      const saved = localStorage.getItem("tasks");
-      const initialValue = JSON.parse(saved);
+      return localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
-
-    function onSubmit(e) {
-      e.preventDefault();
-    }
+    // function onSubmit(e) {
+    //   e.preventDefault();
+    // }
     function handleNameChange(e) {
       setTaskName(e.target.value);
       console.log(taskName);
@@ -37,18 +34,11 @@ export default function TaskSlicer() {
         ...current,
         ...[{ id: tasks.length, name: taskName, description: description }],
       ]);
+      setSaveTasks((savedtask) => [...savedtask, ...[tasks]]);
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
     }
-    // function handleFormSubmit(e) {
-    //   console.log(tasks);
-    //   if (taskName === "" || description === "") {
-    //     return e.preventDefault();
-    //   } else {
-    //     return handleTaskSubmit();
-    //   }
-    // }
     return (
       <div>
         <input
@@ -93,6 +83,8 @@ export default function TaskSlicer() {
 
   return (
     <>
+      {/* testing if saveTasks saves if clicked on another link and go back to task page */}
+      {/* <div>{saveTasks}</div> */}
       <button className="showAddBtn" onClick={showTaskInputs}>
         +New Task
       </button>
@@ -100,7 +92,20 @@ export default function TaskSlicer() {
       <div className="products-grid">
         {/* {loading && <Loader />} */}
 
-        {tasks.map((task) => {
+        {/* {tasks.map((task) => {
+          return (
+            <div>
+              <ViewTasks key={task.id} details={task}></ViewTasks>
+            </div>
+          );
+        })} */}
+
+        {/* 3/6/23
+          -adds a tasks, clicks on login page, goes back to taskSlicer page, and is still saved
+          -when submitting tasks, it show the div and checkbox but not the text of task
+          so that my next challenge.
+         */}
+        {saveTasks.map((task) => {
           return (
             <div>
               <ViewTasks key={task.id} details={task}></ViewTasks>
