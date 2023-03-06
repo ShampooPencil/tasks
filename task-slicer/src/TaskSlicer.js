@@ -13,14 +13,16 @@ export default function TaskSlicer() {
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
 
+  useEffect(() => {
+    console.log(saveTasks);
+    return localStorage.setItem("tasks", JSON.stringify(saveTasks));
+  }, [saveTasks]);
+
   function FormTask() {
-    useEffect(() => {
-      console.log(saveTasks);
-      return localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [saveTasks]);
-    // function onSubmit(e) {
-    //   e.preventDefault();
-    // }
+    // useEffect(() => {
+    //   console.log(saveTasks);
+    //   return localStorage.setItem("tasks", JSON.stringify(tasks));
+    // }, [saveTasks]);
     function handleNameChange(e) {
       setTaskName(e.target.value);
       console.log(taskName);
