@@ -1,5 +1,5 @@
   :root {
-    --bg-color: white;
+    --bg-color: rgba(228, 232, 222, 0.586);
     --text-color: black;
 }
 
@@ -12,6 +12,12 @@ body.dark {
     --bg-color: #222; /* almost black */
     --text-color: white;
 }
+.task-info{
+  border: .1rem solid black;
+}
+ /* .dark > .task-info{
+  border: .1rem solid #d32828;
+} */
 .navContainer {
     display: flex;
     flex-direction: row;
@@ -47,12 +53,6 @@ body.dark {
 .task-description{
   font-size: medium;
 }
-/***********************************************************
-  *                                                        *
-  *    flex-boxes cheatsheets keyboard shortcut is ctrl+;  *  
-  *                                                        *
-  ********************************************************** */
-
 .showInput {
   display:block;
 }

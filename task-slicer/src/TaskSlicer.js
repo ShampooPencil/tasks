@@ -48,6 +48,7 @@ export default function TaskSlicer() {
     }
     return (
       <div>
+        {/* input for inserting task name */}
         <input
           className={showInputClass}
           id="taskName"
@@ -56,6 +57,7 @@ export default function TaskSlicer() {
           value={taskName}
           onChange={handleNameChange}
         />
+        {/* input for inserting task name */}
         <input
           id="description"
           className={showInputClass}
@@ -74,6 +76,7 @@ export default function TaskSlicer() {
     );
   }
 
+  // basically a dropdown and show some inputs when user wants to start a new task
   function showTaskInputs() {
     if (showTaskInput) {
       setTaskInput(false);
@@ -88,6 +91,12 @@ export default function TaskSlicer() {
     }
   }
 
+  //for deleting a task
+  function handleDeleteTask(id) {
+    setSaveTasks(saveTasks.filter((product) => product.id !== id));
+    console.log(saveTasks);
+  }
+
   return (
     <>
       {/* testing if saveTasks saves if clicked on another link and go back to task page */}
@@ -97,16 +106,6 @@ export default function TaskSlicer() {
       </button>
       {setTaskInput ? FormTask() : ""}
       <div className="products-grid">
-        {/* {loading && <Loader />} */}
-
-        {/* {tasks.map((task) => {
-          return (
-            <div>
-              <ViewTasks key={task.id} details={task}></ViewTasks>
-            </div>
-          );
-        })} */}
-
         {/* 3/6/23
           -adds a tasks, clicks on login page, goes back to taskSlicer page, and is still saved
           -when submitting tasks, it show the div and checkbox but not the text of task
@@ -115,7 +114,11 @@ export default function TaskSlicer() {
         {saveTasks.map((task) => {
           return (
             <div>
-              <ViewTasks key={task.id} details={task}></ViewTasks>
+              <ViewTasks
+                key={task.id}
+                details={task}
+                onDeleteClick={handleDeleteTask}
+              ></ViewTasks>
             </div>
           );
         })}

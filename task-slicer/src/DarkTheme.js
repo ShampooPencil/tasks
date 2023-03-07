@@ -7,8 +7,10 @@ export default function DarkTheme() {
   useEffect(() => {
     if (isDarkTheme) {
       document.body.classList.add("dark");
+      console.log(theme);
     } else {
       document.body.classList.remove("dark");
+      console.log(theme);
     }
   }, [isDarkTheme]);
 
