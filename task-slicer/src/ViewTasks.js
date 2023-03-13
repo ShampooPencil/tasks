@@ -8,7 +8,7 @@ export default function ViewTasks(props) {
   //   removeTask(details.filter((product) => product.id !== id));
   // }
   return (
-    <div className={"task-info dark"}>
+    <div className="borderColor">
       <label className="task-name">
         <input type="checkbox" />
         {details.name}

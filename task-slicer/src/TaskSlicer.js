@@ -113,7 +113,7 @@ export default function TaskSlicer() {
          */}
         {saveTasks.map((task) => {
           return (
-            <div>
+            <div className="taskContainer">
               <ViewTasks
                 key={task.id}
                 details={task}

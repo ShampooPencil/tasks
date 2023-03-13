@@ -12,12 +12,13 @@ body.dark {
     --bg-color: #222; /* almost black */
     --text-color: white;
 }
-.task-info{
-  border: .1rem solid black;
+body.dark  .borderColor{
+  border: .1rem solid white;
 }
- /* .dark > .task-info{
-  border: .1rem solid #d32828;
-} */
+.borderColor{
+  border: .1rem solid black;
+  margin: .1rem;
+}
 .navContainer {
     display: flex;
     flex-direction: row;
@@ -36,11 +37,14 @@ body.dark {
   grid-template-columns: [main-start] [main-last];
   grid-template-rows: [main-start] 40px auto 40px [main-last];
   justify-content: center;
-  /* grid-template-areas: 
-      ". h h h h h h h h h h ."
-      "m c c c c c c c c c c c"
-      ". f f f f f f f f f f .";
-} */
+}
+.taskContainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
 }
 .tasks-view{
   grid-column: main-start / main-last;

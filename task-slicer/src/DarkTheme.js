@@ -7,9 +7,11 @@ export default function DarkTheme() {
   useEffect(() => {
     if (isDarkTheme) {
       document.body.classList.add("dark");
+      document.body.classList.add("borderLight");
       console.log(theme);
     } else {
       document.body.classList.remove("dark");
+      document.body.classList.remove("borderLight");
       console.log(theme);
     }
   }, [isDarkTheme]);
