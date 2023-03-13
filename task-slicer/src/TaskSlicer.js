@@ -47,7 +47,7 @@ export default function TaskSlicer() {
       setInputClass("hideInput");
     }
     return (
-      <div>
+      <div className="taskAddContainer">
         {/* input for inserting task name */}
         <input
           className={showInputClass}
@@ -69,7 +69,7 @@ export default function TaskSlicer() {
         <input
           className={showInputClass}
           type="submit"
-          value="+"
+          value="[+]"
           onClick={taskName && description !== "" ? handleTaskSubmit : ""}
         />
       </div>
@@ -101,19 +101,22 @@ export default function TaskSlicer() {
     <>
       {/* testing if saveTasks saves if clicked on another link and go back to task page */}
       {/* <div>{saveTasks}</div> */}
-      <button className="showAddBtn" onClick={showTaskInputs}>
-        +New Task
-      </button>
+      <div className="taskAddContainer">
+        <button className="showAddBtn" onClick={showTaskInputs}>
+          +New Task
+        </button>
+      </div>
       {setTaskInput ? FormTask() : ""}
-      <div className="products-grid">
-        {/* 3/6/23
+
+      {/* 3/6/23
           -adds a tasks, clicks on login page, goes back to taskSlicer page, and is still saved
           -when submitting tasks, it show the div and checkbox but not the text of task
           so that my next challenge.
          */}
+      <div className="taskContainer">
         {saveTasks.map((task) => {
           return (
-            <div className="taskContainer">
+            <div className="task-item">
               <ViewTasks
                 key={task.id}
                 details={task}

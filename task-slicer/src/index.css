@@ -29,21 +29,34 @@ body.dark  .borderColor{
     padding: 10vh;
   
 }
-.container {
+/* .container { 
   height: 100%;
   display: grid;
   grid-gap: 3px;
-  /* grid-template-columns: [main-start] repeat(12, 1fr) [main-last]; */
+  grid-template-columns: [main-start] repeat(12, 1fr) [main-last];
   grid-template-columns: [main-start] [main-last];
   grid-template-rows: [main-start] 40px auto 40px [main-last];
   justify-content: center;
+} */
+.taskAddContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
 }
 .taskContainer{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: .2rem;
 
 }
 .tasks-view{

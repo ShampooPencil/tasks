@@ -26,7 +26,7 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <div className="container dark">
+        <div className="dark">
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
