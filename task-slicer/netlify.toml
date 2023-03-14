@@ -2,3 +2,8 @@
   from = "/*"
   to = "/"
   status = 200
+
+[[redirects]]
+  from = "/taskslicer*"
+  to = "/taskslicer"
+  status = 200
