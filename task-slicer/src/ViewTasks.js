@@ -1,5 +1,5 @@
-import DarkTheme from "./DarkTheme.js";
-import TaskSlicer from "./TaskSlicer.js";
+// import DarkTheme from "./DarkTheme.js";
+// import TaskSlicer from "./TaskSlicer.js";
 
 export default function ViewTasks(props) {
   const { details, onDeleteClick, theme } = props;

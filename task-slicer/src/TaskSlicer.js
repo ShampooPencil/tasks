@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 // import clsx from "clsx";
 export default function TaskSlicer() {
-  const [saveTasks, setSaveTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("tasks"));
-  });
+  const [saveTasks, setSaveTasks] = useState([
+    () => {
+      return JSON.parse(localStorage.getItem("tasks"));
+    },
+  ]);
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
