@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
@@ -48,9 +49,11 @@ const root = createRoot(document.querySelector("#react-root"));
 const reload = () => {
   console.log("Page reloaded");
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <GoogleOAuthProvider clientId="860796429284-3n24j5fvo8bfk85r903acb1arvejf4pj.apps.googleusercontent.com">
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </GoogleOAuthProvider>
   );
 };
 reload();

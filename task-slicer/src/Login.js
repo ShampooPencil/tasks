@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GoogleLogin } from "@react-oauth/google";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -7,6 +9,12 @@ export default function Login() {
   const submitThis = () => {
     const info = { email: email, password: password };
     setDataInput([info]);
+  };
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
   };
   return (
     <div>
@@ -33,6 +41,12 @@ export default function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div>
+        <h2>React Google Login</h2>
+        <br />
+        <br />
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+      </div>
     </div>
   );
 }
