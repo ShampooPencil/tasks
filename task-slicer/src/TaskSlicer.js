@@ -19,7 +19,7 @@ export default function TaskSlicer() {
     console.log(saveTasks);
     console.log(tasks);
     return localStorage.setItem("tasks", JSON.stringify(saveTasks));
-  }, [saveTasks]);
+  }, [tasks, saveTasks]);
 
   function FormTask() {
     // useEffect(() => {
