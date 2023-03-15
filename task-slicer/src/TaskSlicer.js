@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
-// import clsx from "clsx";
 export default function TaskSlicer() {
   const [saveTasks, setSaveTasks] = useState([
     () => {
@@ -18,6 +17,7 @@ export default function TaskSlicer() {
   useEffect(() => {
     console.log(saveTasks);
     console.log(tasks);
+
     return localStorage.setItem("tasks", JSON.stringify(saveTasks));
   }, [tasks, saveTasks]);
 
