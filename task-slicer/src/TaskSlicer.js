@@ -3,6 +3,11 @@ import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 // import clsx from "clsx";
 export default function TaskSlicer() {
+  // const [saveTasks, setSaveTasks] = useState([
+  //   () => {
+  //     return JSON.parse(localStorage.getItem("tasks"));
+  //   },
+  // ]);
   const [saveTasks, setSaveTasks] = useState([
     () => {
       return JSON.parse(localStorage.getItem("tasks"));
@@ -18,10 +23,8 @@ export default function TaskSlicer() {
   useEffect(() => {
     console.log(saveTasks);
     console.log(tasks);
-
     return localStorage.setItem("tasks", JSON.stringify(saveTasks));
-    // return localStorage.setItem("tasks", JSON.stringify(saveTasks));
-  }, [tasks]);
+  }, [saveTasks]);
 
   function FormTask() {
     // useEffect(() => {
