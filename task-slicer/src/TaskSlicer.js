@@ -15,11 +15,10 @@ export default function TaskSlicer() {
   const [showInputClass, setInputClass] = useState("hideInput");
 
   useEffect(() => {
-    console.log(saveTasks);
     console.log(tasks);
 
-    return localStorage.setItem("tasks", JSON.stringify(saveTasks));
-  }, [tasks, saveTasks]);
+    return localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function FormTask() {
     // useEffect(() => {
@@ -36,12 +35,12 @@ export default function TaskSlicer() {
       console.log(description);
     }
     function handleTaskSubmit() {
-      setTasks((current) => [
-        ...current,
-        ...[{ id: tasks.length, name: taskName, description: description }],
+      setTasks([
+        ...tasks,
+        { id: tasks.length, name: taskName, description: description },
       ]);
-      setSaveTasks((current) => [
-        ...current,
+      setSaveTasks([
+        ...saveTasks,
         { id: tasks.length, name: taskName, description: description },
       ]);
 

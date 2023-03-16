@@ -46,6 +46,7 @@ export default function Login() {
         <br />
         <br />
         <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+        {/* <GoogleLogin onSuccess={() =>()} onError={() => ()} cookiePolicy='single-host-origin'/> */}
       </div>
     </div>
   );
