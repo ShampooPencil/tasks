@@ -2,49 +2,30 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 export default function TaskSlicer() {
-  const [saveTasks, setSaveTasks] = useState([
-    () => {
-      return JSON.parse(localStorage.getItem("tasks"));
-    },
-  ]);
-  const [tasks, setTasks] = useState([]);
+  // console.log(tasks?.tasks?.tasks);
+  const [tasks, setTasks] = useState(() => {
+    return JSON.parse(localStorage.getItem("tasks"));
+  });
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [addBtn, setAddBtn] = useState(true);
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
-
   useEffect(() => {
     console.log(tasks);
-
-    return localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
-
   function FormTask() {
-    // useEffect(() => {
-    //   console.log(saveTasks);
-    //   return localStorage.setItem("tasks", JSON.stringify(tasks));
-    // }, [saveTasks]);
     function handleNameChange(e) {
       setTaskName(e.target.value);
       console.log(taskName);
-      // setValidation(0)
     }
     function handleDescriptionChange(e) {
       setDescription(e.target.value);
       console.log(description);
     }
     function handleTaskSubmit() {
-      setTasks([
-        ...tasks,
-        { id: tasks.length, name: taskName, description: description },
-      ]);
-      setSaveTasks([
-        ...saveTasks,
-        { id: tasks.length, name: taskName, description: description },
-      ]);
-
-      console.log(saveTasks);
+      setTasks([...tasks, { id: tasks.length, name: taskName, description: description }]);
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
@@ -94,10 +75,13 @@ export default function TaskSlicer() {
     }
   }
 
-  //for deleting a task
+  // for deleting a task
   function handleDeleteTask(id) {
-    setSaveTasks(saveTasks.filter((product) => product.id !== id));
-    console.log(saveTasks);
+    setTasks(tasks.filter((task) => task !== null ));
+    setTasks(tasks.filter((task) => task.id !== id));
+    console.log(tasks)
+    // localStorage.removeItem("tasks");
+    
   }
 
   return (
@@ -117,17 +101,18 @@ export default function TaskSlicer() {
           so that my next challenge.
          */}
       <div className="taskContainer">
-        {saveTasks.map((task) => {
-          return (
-            <div className="task-item">
-              <ViewTasks
+      {tasks.filter(perTask => perTask !== null).map((task) => {
+          return <>
+          <div>
+          <ViewTasks
                 key={task.id}
                 details={task}
                 onDeleteClick={handleDeleteTask}
               ></ViewTasks>
             </div>
-          );
-        })}
+          </>
+        })
+        }
       </div>
     </>
   );
