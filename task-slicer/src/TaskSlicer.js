@@ -74,12 +74,14 @@ export default function TaskSlicer() {
       console.log(showTaskInput);
     }
   }
+  
 
   // for deleting a task
+
   function handleDeleteTask(id) {
-    setTasks(tasks.filter((task) => task !== null ));
-    setTasks(tasks.filter((task) => task.id !== id));
-    console.log(tasks)
+    console.log(id)
+    setTasks(tasks.filter((task) => task !== null ))
+    setTasks(tasks.filter((task) => task.id !== id))
     // localStorage.removeItem("tasks");
     
   }
