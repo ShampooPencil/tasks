@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 export default function TaskSlicer() {
-  // console.log(tasks?.tasks?.tasks);
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
+  // const [updateId, setId] = useState([])
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [addBtn, setAddBtn] = useState(true);
@@ -24,11 +24,17 @@ export default function TaskSlicer() {
       setDescription(e.target.value);
       console.log(description);
     }
+
+
     function handleTaskSubmit() {
-      setTasks([...tasks, { id: tasks.length, name: taskName, description: description }]);
+      setTasks([...tasks, {id: tasks.length > 0 ? tasks.length + 1 : tasks.length, name: taskName, description: description }]);
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
+      // let obj = tasks.find(o => o.id.value());
+
+      // console.log(obj);
+
     }
     return (
       <div className="taskAddContainer">
@@ -64,7 +70,6 @@ export default function TaskSlicer() {
   function showTaskInputs() {
     if (showTaskInput) {
       setTaskInput(false);
-      // setAddBtn(false);
       setInputClass("showInput");
       console.log(addBtn);
       console.log(showTaskInput);
@@ -75,16 +80,24 @@ export default function TaskSlicer() {
     }
   }
   
-
-  // for deleting a task
+// for deleting a task
 
   function handleDeleteTask(id) {
     console.log(id)
+    let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
-    // localStorage.removeItem("tasks");
+    tasks.map((item) => { 
+        updatedId++;
+        return {...item, id: updatedId}
+      })
     
-  }
+    }
+    
+    
+    // setUpdatedTasks([...tasks, { id: tasks.map().length, name: taskName, description: description }]);
+    
+  
 
   return (
     <>
@@ -119,3 +132,4 @@ export default function TaskSlicer() {
     </>
   );
 }
+
