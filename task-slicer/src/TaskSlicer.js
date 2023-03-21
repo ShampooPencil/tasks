@@ -5,7 +5,7 @@ export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
-  // const [updateId, setId] = useState([])
+  const [updateIds, setId] = useState([])
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [addBtn, setAddBtn] = useState(true);
@@ -27,12 +27,12 @@ export default function TaskSlicer() {
 
 
     function handleTaskSubmit() {
-      setTasks([...tasks, {id: tasks.length > 0 ? tasks.length + 1 : tasks.length, name: taskName, description: description }]);
+      setTasks([...tasks, {id: tasks.length + 1, name: taskName, description: description }]);
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
       // let obj = tasks.find(o => o.id.value());
-
+      
       // console.log(obj);
 
     }
@@ -84,13 +84,25 @@ export default function TaskSlicer() {
 
   function handleDeleteTask(id) {
     console.log(id)
-    let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
-    tasks.map((item) => { 
-        updatedId++;
-        return {...item, id: updatedId}
-      })
+    const currentTasks = tasks;
+    // let updatedId = 0;
+    // currentTasks.forEach((id) => {
+    //   setTasks(updateId => ({ ...updateId, [id]: updatedId++}));
+    // });
+    // let updatedId = 0;
+    // setId([]);
+    // const updatedTasks = tasks.map(task => {
+
+    //     updatedId = updatedId + 1;
+    //     setId([...tasks, {id: updatedId, name: task.name, description: task.description }])
+    //     // in all other cases, keep it as it was
+    //     return task
+    // });
+    // console.log(updatedTasks);
+    // console.log(updateIds)
+    // setTasks(updatedTasks)
     
     }
     
