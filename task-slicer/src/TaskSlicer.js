@@ -84,30 +84,18 @@ export default function TaskSlicer() {
 
   function handleDeleteTask(id) {
     console.log(id)
+    let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
-    const currentTasks = tasks;
-    // let updatedId = 0;
-    // currentTasks.forEach((id) => {
-    //   setTasks(updateId => ({ ...updateId, [id]: updatedId++}));
-    // });
-    // let updatedId = 0;
-    // setId([]);
-    // const updatedTasks = tasks.map(task => {
+    // setTasks(tasks.map(el => el.id >= 0 ? {
+    //   ...el,
+    //   id: updatedId++ // the new title
+    // } : el));
+    // console.log(newData)
+    // setTasks([newData])
 
-    //     updatedId = updatedId + 1;
-    //     setId([...tasks, {id: updatedId, name: task.name, description: task.description }])
-    //     // in all other cases, keep it as it was
-    //     return task
-    // });
-    // console.log(updatedTasks);
-    // console.log(updateIds)
-    // setTasks(updatedTasks)
-    
     }
     
-    
-    // setUpdatedTasks([...tasks, { id: tasks.map().length, name: taskName, description: description }]);
     
   
 
