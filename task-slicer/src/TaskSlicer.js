@@ -5,16 +5,18 @@ export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
-  const [updateIds, setId] = useState([])
+  const [updateIds, setId] = useState([0])
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [addBtn, setAddBtn] = useState(true);
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
+  
   useEffect(() => {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+  
   function FormTask() {
     function handleNameChange(e) {
       setTaskName(e.target.value);
@@ -27,6 +29,7 @@ export default function TaskSlicer() {
 
 
     function handleTaskSubmit() {
+      setId([...updateIds, updateIds + 1]);
       setTasks([...tasks, {id: tasks.length + 1, name: taskName, description: description }]);
       setTaskName("");
       setDescription("");
