@@ -118,19 +118,21 @@ export default function TaskSlicer() {
           -when submitting tasks, it show the div and checkbox but not the text of task
           so that my next challenge.
          */}
-      <div className="taskContainer">
-      {tasks.filter(perTask => perTask !== null).map((task) => {
-          return <>
-          <div>
-          <ViewTasks
-                key={task.id}
-                details={task}
-                onDeleteClick={handleDeleteTask}
-              ></ViewTasks>
-            </div>
-          </>
-        })
-        }
+      <div className="container">
+        <div className="taskContainer">
+        {tasks.filter(perTask => perTask !== null).map((task) => {
+            return <>
+            {/* <div className="borderColor"> */}
+            <ViewTasks
+                  key={task.id}
+                  details={task}
+                  onDeleteClick={handleDeleteTask}
+                ></ViewTasks>
+              {/* </div> */}
+            </>
+          })
+          }
+        </div>
       </div>
     </>
   );
