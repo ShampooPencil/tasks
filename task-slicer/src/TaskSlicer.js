@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
-  const [updateIds, setId] = useState([0])
+  // const [updateIds, setId] = useState(() => {
+  //   return JSON.parse(localStorage.getItem("updateIds"));
+  // });
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
-  const [addBtn, setAddBtn] = useState(true);
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
   
@@ -16,7 +17,12 @@ export default function TaskSlicer() {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+  // useEffect(() => {
+  //   console.log(updateIds);
+  //   localStorage.setItem("updateIds", JSON.stringify(updateIds))
+  // }, [updateIds]);
   
+
   function FormTask() {
     function handleNameChange(e) {
       setTaskName(e.target.value);
@@ -29,8 +35,10 @@ export default function TaskSlicer() {
 
 
     function handleTaskSubmit() {
-      setId([...updateIds, updateIds + 1]);
-      setTasks([...tasks, {id: tasks.length + 1, name: taskName, description: description }]);
+      // let arr = taskName.split(' ')
+      // setId([...updateIds, arr[0][1]]);
+      setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
+      
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
@@ -74,7 +82,6 @@ export default function TaskSlicer() {
     if (showTaskInput) {
       setTaskInput(false);
       setInputClass("showInput");
-      console.log(addBtn);
       console.log(showTaskInput);
     } else {
       setTaskInput(true);
@@ -87,7 +94,7 @@ export default function TaskSlicer() {
 
   function handleDeleteTask(id) {
     console.log(id)
-    let updatedId = 0;
+    // let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
     // setTasks(tasks.map(el => el.id >= 0 ? {
