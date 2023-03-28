@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { NavLink } from "react-router-dom";
 import ViewTasks from "./ViewTasks";
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
@@ -79,7 +78,7 @@ export default function TaskSlicer() {
 
   // basically a dropdown and show some inputs when user wants to start a new task
   function showTaskInputs() {
-    if (showTaskInput) {
+    if (showTaskInput) {  
       setTaskInput(false);
       setInputClass("showInput");
       console.log(showTaskInput);
