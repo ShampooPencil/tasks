@@ -4,25 +4,19 @@ export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
-  // const [updateIds, setId] = useState(() => {
-  //   return JSON.parse(localStorage.getItem("updateIds"));
-  // });
+  
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
+  const [removeId, setRemoveId] = useState(false)
   
   useEffect(() => {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
-  // useEffect(() => {
-  //   console.log(updateIds);
-  //   localStorage.setItem("updateIds", JSON.stringify(updateIds))
-  // }, [updateIds]);
   
-
-  function FormTask() {
+function FormTask() {
     function handleNameChange(e) {
       setTaskName(e.target.value);
       console.log(taskName);
@@ -34,16 +28,10 @@ export default function TaskSlicer() {
 
 
     function handleTaskSubmit() {
-      // let arr = taskName.split(' ')
-      // setId([...updateIds, arr[0][1]]);
       setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
-      
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
-      // let obj = tasks.find(o => o.id.value());
-      
-      // console.log(obj);
 
     }
     return (
@@ -76,7 +64,7 @@ export default function TaskSlicer() {
     );
   }
 
-  // basically a dropdown and show some inputs when user wants to start a new task
+  // dropdown and show some inputs when user wants to start a new task
   function showTaskInputs() {
     if (showTaskInput) {  
       setTaskInput(false);
@@ -89,21 +77,21 @@ export default function TaskSlicer() {
     }
   }
   
-// for deleting a task
-
+  // function removeIds(remove){
+  //   if(remove){
+  //     return "animate__backOutDown"
+  //   }
+  // }
   function handleDeleteTask(id) {
-    console.log(id)
-    // let updatedId = 0;
+    // removeIds(id)
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
-    // setTasks(tasks.map(el => el.id >= 0 ? {
-    //   ...el,
-    //   id: updatedId++ // the new title
-    // } : el));
-    // console.log(newData)
-    // setTasks([newData])
-
-    }
+   if(id === true) {
+    console.log(true)
+   }else{
+    console.log(false)
+   }
+  }
     
     
   
@@ -125,16 +113,15 @@ export default function TaskSlicer() {
           so that my next challenge.
          */}
       <div className="container">
-        <div className="taskContainer">
+        <div className={`taskContainer`}>
         {tasks.filter(perTask => perTask !== null).map((task) => {
             return <>
-            {/* <div className="borderColor"> */}
             <ViewTasks
                   key={task.id}
+                  // dropId={task.id === "" ? "" : removeId(task.id)}
                   details={task}
                   onDeleteClick={handleDeleteTask}
                 ></ViewTasks>
-              {/* </div> */}
             </>
           })
           }

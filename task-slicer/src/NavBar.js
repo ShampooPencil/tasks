@@ -4,7 +4,7 @@ import DarkTheme from "./DarkTheme";
 export default function NavBar() {
   return (
     <>
-      <div>
+      {/* <div className="navContainer"> */}
         <nav className="navContainer">
           <DarkTheme />
           <NavLink to="/" className="navLinks">
@@ -14,7 +14,7 @@ export default function NavBar() {
             <div className="taskSlicerFontName">TaskSlicer</div>
           </NavLink>
         </nav>
-      </div>
+      {/* </div> */}
     </>
   );
 }

@@ -17,9 +17,8 @@ export default function Login() {
     console.log(error);
   };
   return (
-    <div>
-      <form action="" onSubmit={submitThis}>
-        <div>
+    <div className="loginContainer">
+      <form className="formContainer" action="" onSubmit={submitThis}>
           <label htmlFor="email">Email</label>
           <input
             type="text"
@@ -28,8 +27,6 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div>
           <label htmlFor="password">Password</label>
           <input
             type="text"
@@ -38,11 +35,9 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
         <button type="submit">Login</button>
       </form>
       <div>
-        <h2>React Google Login</h2>
         <br />
         <br />
         <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
