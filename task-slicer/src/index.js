@@ -28,10 +28,12 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <div className="dark">
+        <main>
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
           </Routes>
+        </main>
         </div>
       </BrowserRouter>
     </>

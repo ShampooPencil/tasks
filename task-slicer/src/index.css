@@ -6,6 +6,20 @@
   body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+
+  body::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #1e1e24
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: #6649b8
   }
 
   body.dark {
@@ -14,17 +28,44 @@
     --text-color: white;
   }
 
+  main {
+    margin-left: 5rem;
+    padding: 1rem;
+  }
 
   .navContainer {
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+  }
+
+  .navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-item:last-child {
+    margin-top: 0;
+  }
+
+  /* .navContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     font-size: 150%;
     background-color: coral;
-    padding: 10vh;
+    padding: 5vh;
 
-  }
+  } */
 
 
   body.dark .borderColor {
