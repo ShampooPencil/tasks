@@ -1,74 +1,104 @@
 import React, { useState, useEffect } from "react";
-import ViewTasks from "./ViewTasks";
+import { NavLink } from "react-router-dom";
+import ViewTasks from "./ViewTasks.js";
+// import clsx from "clsx";
 export default function TaskSlicer() {
-  const [tasks, setTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("tasks"));
-  });
-  
-  const [taskName, setTaskName] = useState("");
-  const [description, setDescription] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [taskName, setTaskName] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [addBtn, setAddBtn] = useState(true);
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
-  const [removeId, setRemoveId] = useState(false)
-  
-  useEffect(() => {
-    console.log(tasks);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-  
-function FormTask() {
+
+  function FormTask() {
+    // const handleSubmit = (event) => {
+    //   console.log("Task was submitted!");
+    // };
+    useEffect(() => {
+      console.log(tasks);
+    }, [tasks]);
+
+    function onSubmit(e) {
+      e.preventDefault();
+    }
     function handleNameChange(e) {
       setTaskName(e.target.value);
       console.log(taskName);
+      // setValidation(0)
     }
     function handleDescriptionChange(e) {
       setDescription(e.target.value);
       console.log(description);
     }
-
-
     function handleTaskSubmit() {
-      setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
-      setTaskName("");
-      setDescription("");
+      setTasks((current) => [
+        ...current,
+        ...[{ id: tasks.length, name: taskName, description: description }],
+      ]);
+      setTaskName([]);
+      setDescription([]);
       setInputClass("hideInput");
+      // if(showInputClass === "showInput"){
+      //   setInputClass("hideInput");
+      // }else{
+      //   setInputClass("showInput")
+      // }
 
+
+      //   setValidation(validate + 1)
+    }
+    function handleFormSubmit(e) {
+      console.log(tasks);
+      if (taskName === "" || description === "") {
+        return e.preventDefault();
+      } else {
+        return handleTaskSubmit();
+      }
     }
     return (
-      <div className="taskAddContainer">
-        {/* input for inserting task name */}
+      <div>
         <input
           className={showInputClass}
           id="taskName"
           type="text"
           placeholder="Task"
-          value={taskName}
           onChange={handleNameChange}
         />
-        {/* input for inserting task name */}
         <input
           id="description"
           className={showInputClass}
           type="text"
           placeholder="Enter Description"
-          value={description}
           onChange={handleDescriptionChange}
         />
         <input
           className={showInputClass}
           type="submit"
-          value="[+]"
-          onClick={taskName && description !== "" ? handleTaskSubmit : ""}
+          value="+"
+          onClick={handleTaskSubmit}
         />
+        {/* <div className="products-grid">
+          {/* {loading && <Loader />} */}
+          {/* {taskName !== "" ? */}
+          {/* <ul>
+            {tasks.map((task) => {
+              
+              return (
+                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
+              )
+            })} */}
+          {/* </ul> : ""} */} 
+        {/* </div> */}
       </div>
     );
   }
 
-  // dropdown and show some inputs when user wants to start a new task
   function showTaskInputs() {
-    if (showTaskInput) {  
+    if (showTaskInput) {
       setTaskInput(false);
+      // setAddBtn(false);
       setInputClass("showInput");
+      console.log(addBtn);
       console.log(showTaskInput);
     } else {
       setTaskInput(true);
@@ -76,58 +106,27 @@ function FormTask() {
       console.log(showTaskInput);
     }
   }
-  
-  // function removeIds(remove){
-  //   if(remove){
-  //     return "animate__backOutDown"
-  //   }
-  // }
-  function handleDeleteTask(id) {
-    // removeIds(id)
-    setTasks(tasks.filter((task) => task !== null ))
-    setTasks(tasks.filter((task) => task.id !== id))
-   if(id === true) {
-    console.log(true)
-   }else{
-    console.log(false)
-   }
-  }
-    
-    
-  
 
   return (
     <>
-      {/* testing if saveTasks saves if clicked on another link and go back to task page */}
-      {/* <div>{saveTasks}</div> */}
-      <div className="taskAddContainer">
+      <div className="tasks-view">
         <button className="showAddBtn" onClick={showTaskInputs}>
           +New Task
         </button>
-      </div>
-      {setTaskInput ? FormTask() : ""}
-
-      {/* 3/6/23
-          -adds a tasks, clicks on login page, goes back to taskSlicer page, and is still saved
-          -when submitting tasks, it show the div and checkbox but not the text of task
-          so that my next challenge.
-         */}
-      <div className="container">
-        <div className={`taskContainer`}>
-        {tasks.filter(perTask => perTask !== null).map((task) => {
-            return <>
-            <ViewTasks
-                  key={task.id}
-                  // dropId={task.id === "" ? "" : removeId(task.id)}
-                  details={task}
-                  onDeleteClick={handleDeleteTask}
-                ></ViewTasks>
-            </>
-          })
-          }
+        {setTaskInput ? FormTask() : ""}
+        <div className="products-grid">
+          {/* {loading && <Loader />} */}
+          {taskName !== "" ?
+          <ul>
+            {tasks.map((task) => {
+              
+              return (
+                 <li><ViewTasks key={task.id} details={task}></ViewTasks></li>
+              )
+            })}
+          </ul> : ""}
         </div>
       </div>
     </>
   );
 }
-
