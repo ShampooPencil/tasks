@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import Dashboard from './Dashboard';
+import Preferences from './Preferences';
 import DarkTheme from "./DarkTheme";
 //probably add props later on
 export default function NavBar() {

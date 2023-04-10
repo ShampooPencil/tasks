@@ -2,10 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
 import Login from "./Login";
+import Signup from "./Signup";
 
 /* 3/5/23
 NEXT COUPLE OF CHALLENGES:
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
+            <Route path="/signup" element={<Signup/>}></Route>
           </Routes>
        </div>
       </BrowserRouter>

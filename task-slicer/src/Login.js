@@ -1,10 +1,23 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dataInput, setDataInput] = useState([]);
+
+  // function validateForm() {
+
+  //   return email.length > 0 && password.length > 0;
+
+  // }
+
+  // function handleSubmit(event) {
+
+  //   event.preventDefault();
+
+  // }
 
   const submitThis = () => {
     const info = { email: email, password: password };
@@ -36,6 +49,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         <button type="submit">Login</button>
+        <NavLink to="/signup">Sign-Up</NavLink>
       </form>
       <div>
         <br />
