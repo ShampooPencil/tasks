@@ -27,14 +27,12 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <div className="dark">
-        <main>
+        <div className="dark mainContent">
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
           </Routes>
-        </main>
-        </div>
+       </div>
       </BrowserRouter>
     </>
   );
