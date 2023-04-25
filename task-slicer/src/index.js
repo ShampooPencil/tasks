@@ -31,6 +31,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <div className="dark mainContent">
+    
           <Routes>
             <Route path="/" element={<Login />}></Route>
             {/* <Route path="/" element={!session ? <Auth /> : <Account key={session.user.id} session={session} />}></Route> */}
