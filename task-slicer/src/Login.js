@@ -1,67 +1,62 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+import React, { useState, useEffect } from 'react';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
-export default function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [dataInput, setDataInput] = useState([]);
-  const [username, setUsername] = useState("");
-  const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
-  const users = [{ username: "Jane", password: "testpassword" }];
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const account = users.find((user) => user.username === username);
-    if (account && account.password === password) {
-        setAuthenticated(true)
-        localStorage.setItem("authenticated", true);
-        navigate("/dashboard")
-// Note that when creating applications, one of the goals is 
-// to give users the best experience. In this case, taking the user back 
-// to the page they were on before redirecting them to the login page 
-// improves user experience. You can do this by passing -1 to navigate like this, navigate (-1).
+function Login() {
+    const [ user, setUser ] = useState([]);
+    const [ profile, setProfile ] = useState([]);
+    // const axios = require('axios/dist/browser/axios.cjs'); // browser
+    // const axios = require('axios/dist/node/axios.cjs'); // node
+    //const axios = require('axios');
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
 
-    }
-  };
+    useEffect(
+        () => {
+            if (user) {
+                axios
+                    .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                        headers: {
+                            Authorization: `Bearer ${user.access_token}`,
+                            Accept: 'application/json'
+                        }
+                    })
+                    .then((res) => {
+                        setProfile(res.data);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        },
+        [ user ]
+    );
 
+    // log out function to log the user out of google and set the profile array to null
+    const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
 
-  const submitThis = () => {
-    const info = { email: email, password: password };
-    setDataInput([info]);
-  };
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
-  return (
-    <div className="loginContainer">
-       <p>Welcome Back</p>
-      {/* <a href="/Login.js"
-      onClick="window.displayPreferenceModal();return false;"
-      id="termly-consent-preferences">Consent Preferences</a> */}
-      <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        name="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input type="submit" value="Submit" />
-      </form>
-      <div>
-        <br />
-        <br />
-        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-        {/* <GoogleLogin onSuccess={() =>()} onError={() => ()} cookiePolicy='single-host-origin'/> */}
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <h2>React Google Login</h2>
+            <br />
+            <br />
+            {profile ? (
+                <div>
+                    <img src={profile.picture} alt="profile pic" />
+                    <h3>User Logged in</h3>
+                    <p>Name: {profile.name}</p>
+                    <p>Email Address: {profile.email}</p>
+                    <br />
+                    <br />
+                    <button onClick={logOut}>Log out</button>
+                </div>
+            ) : (
+                <button onClick={() => login()}>Sign in with Google 🚀 </button>
+            )}
+        </div>
+    );
 }
+export default Login;
