@@ -14,7 +14,7 @@ export default function ViewTasks(props) {
         <input type="checkbox" />
         {details.name}
         <p className="task-description">{details.description}</p>
-        <button onClick={() => props.onDeleteClick(details.id)}>remove</button>
+        <button onClick={() => onDeleteClick(details.id)}>remove</button>
       </label>
     </div>
    </>

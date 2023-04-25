@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { createRoot } from "react-dom/client";
 import "./index.css";
-// import './App.css'
-import { supabase } from './supabaseClient.js'
-import Auth from './Auth'
-import Account from './Account'
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
@@ -12,8 +8,7 @@ import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
 import Login from "./Login";
 import Signup from "./Signup";
-import Dashboard from "./Dashboard";
-import { createClient } from '@supabase/supabase-js'
+// import Dashboard from "./Dashboard";
 
 /* 3/5/23
 NEXT COUPLE OF CHALLENGES:
@@ -31,29 +26,18 @@ function App() {
   //toggle black or white theme
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   console.log(prefersDark); // either true or false (depending on your OS preference)
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
   return (
     <>
       <BrowserRouter>
         <NavBar />
         <div className="dark mainContent">
           <Routes>
-            {/* <Route path="/" element={<Login />}></Route> */}
-            <Route path="/" element={!session ? <Auth /> : <Account key={session.user.id} session={session} />}></Route>
+            <Route path="/" element={<Login />}></Route>
+            {/* <Route path="/" element={!session ? <Auth /> : <Account key={session.user.id} session={session} />}></Route> */}
             <Route path="/taskslicer" element={<TaskSlicer />}></Route>
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           </Routes>
        </div>
       </BrowserRouter>
