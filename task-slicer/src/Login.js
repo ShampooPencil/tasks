@@ -39,6 +39,9 @@ export default function Login() {
   return (
     <div className="loginContainer">
        <p>Welcome Back</p>
+      {/* <a href="/Login.js"
+      onClick="window.displayPreferenceModal();return false;"
+      id="termly-consent-preferences">Consent Preferences</a> */}
       <form onSubmit={handleSubmit}>
       <input
         type="text"
