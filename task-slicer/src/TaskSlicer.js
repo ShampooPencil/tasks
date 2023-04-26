@@ -11,6 +11,7 @@ export default function TaskSlicer() {
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
   const [showInputClass, setInputClass] = useState("hideInput");
+  const [isActive, setIsActive] = useState(false);
   
   useEffect(() => {
     console.log(tasks);
@@ -102,6 +103,7 @@ export default function TaskSlicer() {
 // for deleting a task
 
   function handleDeleteTask(id) {
+    setIsActive(true)
     console.log(id)
     // let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
@@ -138,7 +140,7 @@ export default function TaskSlicer() {
         <div className="taskContainer">
         {tasks.filter(perTask => perTask !== null).map((task) => {
             return <>
-            <div onClick={handleClick}>
+            <div className='animate__slideOutRight'>
             <ViewTasks
                   key={task.id}
                   details={task}

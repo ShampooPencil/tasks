@@ -9,7 +9,7 @@ export default function ViewTasks(props) {
   // }
   return (
     <>
-    <div className={`animate__animated animate__backInDown borderColor ${dropId}`}>
+    <div className={`animate__animated animate__backInDown borderColor ${details.id}`}>
       <label className="task-name">
         <input type="checkbox" />
         {details.name}
