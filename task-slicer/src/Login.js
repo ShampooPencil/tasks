@@ -3,7 +3,9 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 function Login() {
-    const [ user, setUser ] = useState([]);
+    const [ user, setUser ] = useState(() => {
+        return JSON.parse(localStorage.getItem("user"));
+      });
     const [ profile, setProfile ] = useState([]);
     // const axios = require('axios/dist/browser/axios.cjs'); // browser
     // const axios = require('axios/dist/node/axios.cjs'); // node
@@ -28,6 +30,7 @@ function Login() {
                     })
                     .catch((err) => console.log(err));
             }
+            localStorage.setItem("user", JSON.stringify(user));
         },
         [ user ]
     );
