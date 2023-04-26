@@ -2,7 +2,7 @@
 // import TaskSlicer from "./TaskSlicer.js";
 
 export default function ViewTasks(props) {
-  const { details, onDeleteClick, theme, dropId } = props;
+  const { details, onDeleteClick, theme, dropId} = props;
   // TODO: get cart from redux store
   // function handleDeleteTask(id) {
   //   removeTask(details.filter((product) => product.id !== id));

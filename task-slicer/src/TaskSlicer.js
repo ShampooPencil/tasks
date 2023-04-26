@@ -21,6 +21,16 @@ export default function TaskSlicer() {
   //   localStorage.setItem("updateIds", JSON.stringify(updateIds))
   // }, [updateIds]);
   
+  const handleClick = event => {
+    // 👇️ toggle class on click
+    // event.currentTarget.classList.toggle('animate__slideOutRight');
+
+    // 👇️ add class on click
+    event.currentTarget.classList.add('animate__slideOutRight');
+
+    // 👇️ remove class on click
+    // event.currentTarget.classList.remove('bg-salmon');
+  };
 
   function FormTask() {
     function handleNameChange(e) {
@@ -128,13 +138,13 @@ export default function TaskSlicer() {
         <div className="taskContainer">
         {tasks.filter(perTask => perTask !== null).map((task) => {
             return <>
-            {/* <div className="borderColor"> */}
+            <div onClick={handleClick}>
             <ViewTasks
                   key={task.id}
                   details={task}
                   onDeleteClick={handleDeleteTask}
                 ></ViewTasks>
-              {/* </div> */}
+              </div>
             </>
           })
           }
