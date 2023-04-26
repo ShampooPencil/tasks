@@ -43,7 +43,7 @@ function Login() {
 
     return (
         <div>
-            <h2>React Google Login</h2>
+            <h2>TaskSlicer Login</h2>
             <br />
             <br />
             {profile ? (
