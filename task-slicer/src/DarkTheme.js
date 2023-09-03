@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 // import clsx from "clsx";
 
 export default function DarkTheme() {
-  const [theme, setTheme] = useState("Light");
+  const [theme, setTheme] = useState("Dark");
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   useEffect(() => {
     if (isDarkTheme) {

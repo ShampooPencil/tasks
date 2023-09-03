@@ -30,9 +30,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
+        {/* <NavBar /> seeing if i can put navbar inside mainContent for grid purposes */}
         <div className="dark mainContent">
-    
+        <NavBar />
           <Routes>
             <Route path="/" element={<Login />}></Route>
             {/* <Route path="/" element={!session ? <Auth /> : <Account key={session.user.id} session={session} />}></Route> */}
