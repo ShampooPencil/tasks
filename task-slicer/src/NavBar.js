@@ -67,7 +67,7 @@ export default function NavBar() {
                     <span className="link-text">Login/SignUp</span>
                   </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item nav-link">
                 <DarkTheme />
               </li>
           </ul>
