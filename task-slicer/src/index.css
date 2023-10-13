@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 
   }
 
@@ -45,7 +46,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     text-align: center;
     /* align-items: stretch; */
     background-color: #ff0659;
@@ -54,15 +55,12 @@
     width: 100%;
     /* transition: width 200ms ease; */
     z-index: 5;
-    /* margin-bottom: 100px; */
-
-
+    margin-bottom: 100px;
     /* filter: grayscale(100%) opacity(0.7); */
     /* transition: var(--transition-speed); */
   }
 
   .navbar-nav {
-
     list-style: none;
     padding: 0;
     margin: 0;
@@ -77,9 +75,9 @@
     width: 100%;
   }
 
-  .nav-item:last-child {
+  /* .nav-item:last-child {
     margin-top: auto;
-  }
+  } */
 
   .nav-item:hover {
     background-color: #0c627f;
@@ -112,14 +110,6 @@
     margin: 0 1.5rem;
   }
 
-  /* .navContainer:hover {
-    width: 16rem;
-  } */
-
-  /* .navContainer:hover .link-text {
-   
-  } */
-
   .fa-primary {
     color: #ff7eee;
   }
@@ -128,10 +118,10 @@
     color: #df49a6;
   }
 
-  /* .fa-primary,
-  .fa-secondary {
-    transition: var(--transition-speed);
-  } */
+  /* Container for tasks */
+  .container {
+    margin-top: 10%;
+  }
 
 
   body.dark .borderColor {
@@ -163,13 +153,21 @@
     margin-top: 12%;
   }
 
+  .account-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
   /* Medium screens */
   @media all and (max-width: 650px) {
     .navContainer {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       text-align: center;
       /* margin-top: 25px; */
       /* margin-bottom: 10px; */
@@ -189,13 +187,22 @@
       margin-top: 20%;
     }
 
+    .account-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20%;
+    }
+
     .borderColor {
       width: 75%;
     }
   }
 
   .container {
-    margin-top: 1px;
+    margin-top: 1%;
   }
 
   /* Small screens */
@@ -236,6 +243,14 @@
 
     }
 
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(75%, 1fr));
+      gap: 15px 10px;
+      align-items: center;
+      margin-bottom: 10%;
+    }
+
     .mainContent:first-child {
       flex: 1 100px;
       display: flex;
@@ -254,7 +269,7 @@
       /* On small screens, we are no longer using row direction but column */
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: minmax(100px, 1fr);
+      grid-template-rows: minmax(auto-fit, 1fr);
       justify-content: center;
       align-content: center;
     }

@@ -42,16 +42,16 @@ function Login() {
     };
 
     return (
-        <div>
-            <h2>TaskSlicer Login</h2>
+        <div className='account-container'>
+            <h2>TaskSlicer Account</h2>
             <br />
-            <br />
+            {/* <br /> */}
             {profile ? (
-                <div>
+                <div className='account-container'>
                     <img src={profile.picture} alt="profile pic" />
-                    <h3>User Logged in</h3>
+                    <h3>{profile.email}</h3>
                     <p>Name: {profile.name}</p>
-                    <p>Email Address: {profile.email}</p>
+                    {/* <p>Email Address: {profile.email}</p> */}
                     <br />
                     <br />
                     <button onClick={logOut}>Log out</button>
