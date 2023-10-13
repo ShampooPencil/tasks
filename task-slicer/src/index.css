@@ -174,17 +174,27 @@
     }
 
     .container {
+      /* display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
       margin-bottom: 25px;
+      margin-left: 2%;
+      margin-right: 2%;
+
     }
 
     .taskContainer {
       /* When on medium sized screens, we center it by evenly distributing empty space around items */
-      flex-direction: row;
-      flex-wrap: wrap;
+      display: grid;
+      /* flex-direction: row;
+      flex-wrap: wrap; */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       justify-content: center;
       align-items: center;
       margin-bottom: 50px;
       margin-top: 20%;
+      margin-left: 5%;
+      margin-right: 5%;
+
     }
 
     .account-container {
@@ -244,11 +254,13 @@
     }
 
     .container {
-      display: grid;
+      /* display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(75%, 1fr)); 
       grid-template-columns: repeat(auto-fit, minmax(75%, 1fr));
       gap: 15px 10px;
-      align-items: center;
+      align-items: center; */
       margin-bottom: 10%;
+
     }
 
     .mainContent:first-child {
@@ -268,10 +280,14 @@
     .taskContainer {
       /* On small screens, we are no longer using row direction but column */
       display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: minmax(auto-fit, 1fr);
+      /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-rows: minmax(100px, 1fr);
       justify-content: center;
       align-content: center;
+      margin-left: 5%;
+      margin-right: 5%;
+
     }
 
     .borderColor {
