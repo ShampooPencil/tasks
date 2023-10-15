@@ -15,8 +15,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
   }
+
 
   body::-webkit-scrollbar {
     width: 0.25rem;
@@ -44,7 +44,7 @@
   .navContainer {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: start;
     text-align: center;
@@ -60,7 +60,7 @@
     /* transition: var(--transition-speed); */
   }
 
-  .navbar-nav {
+  /* .navbar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -69,7 +69,7 @@
     align-items: center;
     justify-content: center;
     height: 50%;
-  }
+  } */
 
   .nav-item {
     width: 100%;
@@ -87,9 +87,10 @@
   }
 
   .nav-link {
-    display: flex;
+    /* display: flex;
+    flex-direction: row;
     align-items: center;
-    height: 5rem;
+    height: 5rem; */
     color: var(--text-primary);
     text-decoration: none;
   }
@@ -119,9 +120,9 @@
   }
 
   /* Container for tasks */
-  .container {
+  /* .container {
     margin-top: 10%;
-  }
+  } */
 
 
   body.dark .borderColor {
@@ -148,8 +149,9 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /* align-items: center; */
     justify-content: center;
-    align-items: center;
+    align-content: flex-start;
     margin-top: 12%;
   }
 
@@ -161,36 +163,50 @@
     align-items: center;
   }
 
+  /* taskslicer page container */
+  .taskSlicerContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+  }
+
+  .taskContainer:nth-child(odd) {
+    align-self: flex-start;
+  }
+
+
   /* Medium screens */
   @media all and (max-width: 650px) {
     .navContainer {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: start;
+      justify-content: space-between;
       text-align: center;
       /* margin-top: 25px; */
       /* margin-bottom: 10px; */
     }
 
-    .container {
+    /* .container {
       /* display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-      margin-bottom: 25px;
+    /* margin-bottom: 25px;
       margin-left: 2%;
       margin-right: 2%;
 
-    }
+    } */
 
     .taskContainer {
       /* When on medium sized screens, we center it by evenly distributing empty space around items */
-      display: grid;
-      /* flex-direction: row;
-      flex-wrap: wrap; */
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      justify-content: center;
-      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       margin-bottom: 50px;
+      justify-content: center;
+      /* justify-content: center; */
+      /* align-items: center; */
       margin-top: 20%;
       margin-left: 5%;
       margin-right: 5%;
@@ -206,13 +222,9 @@
       margin-bottom: 20%;
     }
 
-    .borderColor {
-      width: 75%;
-    }
-  }
-
-  .container {
-    margin-top: 1%;
+    /* .borderColor {
+      width: 250px;
+    } */
   }
 
   /* Small screens */
@@ -227,7 +239,6 @@
       display: flex;
       flex-direction: row;
       background-color: #ff0659;
-      /* align-items: center; */
       width: 100%;
       height: auto;
       top: 80%;
@@ -236,30 +247,10 @@
       right: 0;
       z-index: 5;
       position: fixed;
-      justify-content: space-evenly;
-      align-items: space-evenly;
-      align-content: space-evenly;
+      justify-content: space-between;
+      align-items: space-between;
+      align-content: space-between;
       margin-bottom: 0%;
-
-    }
-
-    .navbar-nav {
-      /* align-self: flex-end; */
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-items: space-evenly;
-      align-content: space-evenly;
-
-    }
-
-    .container {
-      /* display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(75%, 1fr)); 
-      grid-template-columns: repeat(auto-fit, minmax(75%, 1fr));
-      gap: 15px 10px;
-      align-items: center; */
-      margin-bottom: 10%;
 
     }
 
@@ -277,10 +268,9 @@
       grid-area: 2 / 1 / 3 / 2;
     } */
 
-    .taskContainer {
+    /* .taskContainer {
       /* On small screens, we are no longer using row direction but column */
-      display: grid;
-      /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       grid-template-rows: minmax(100px, 1fr);
       justify-content: center;
@@ -288,19 +278,19 @@
       margin-left: 5%;
       margin-right: 5%;
 
-    }
+    } */
 
-    .borderColor {
-      width: 450px;
-    }
+    /* .borderColor {
+      width: 300px;
+    } */
   }
 
   @media all and (max-width: 300px) {
 
 
-    .borderColor {
-      width: 250px
-    }
+    /* .borderColor {
+      width: 230px;
+    } */
   }
 
   .taskAddContainer {
@@ -310,6 +300,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    text-align: center;
     margin: 5%;
     z-index: 5;
 
