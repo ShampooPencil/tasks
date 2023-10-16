@@ -124,7 +124,7 @@ export default function TaskSlicer() {
     <>
       {/* testing if saveTasks saves if clicked on another link and go back to task page */}
       {/* <div>{saveTasks}</div> */}
-      <div className="taskSlicerContainer">
+      {/* <div className="taskSlicerContainer"> */}
       <div className="taskAddContainer">
         <button className="showAddBtn" onClick={showTaskInputs}>
           +New Task
@@ -153,7 +153,7 @@ export default function TaskSlicer() {
           }
         </div>
       {/* </div> */}
-      </div>
+      {/* </div> */}
     </>
   );
 }
