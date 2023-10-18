@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ViewTasks from "./ViewTasks";
+import TaskDetails from "./TaskDetails";
+import { NavLink } from "react-router-dom"
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
@@ -117,7 +119,15 @@ export default function TaskSlicer() {
 
     }
     
-    
+    function addDetails(slicerName, steps){
+      console.log("Task Clicked!");
+      return(
+        <div className="cardContainer">
+          <h2>{slicerName}</h2>
+          <button>+Next Step</button>
+        </div>
+      )
+    }
   
 
   return (
@@ -137,23 +147,22 @@ export default function TaskSlicer() {
           -when submitting tasks, it show the div and checkbox but not the text of task
           so that my next challenge.
          */}
-      {/* <div className="container"> */}
         <div className="taskContainer">
         {tasks.filter(perTask => perTask !== null).map((task) => {
             return <>
-            <div className='animate__slideOutRight'>
+            {/* <NavLink to="/taskdetails" onClick={addDetails(task.taskName)}> */}
+            <div className='animate__slideOutRight' onClick={addDetails}>
             <ViewTasks
                   key={task.id}
                   details={task}
                   onDeleteClick={handleDeleteTask}
                 ></ViewTasks>
               </div>
+            {/* </NavLink> */}
             </>
           })
           }
         </div>
-      {/* </div> */}
-      {/* </div> */}
     </>
   );
 }
