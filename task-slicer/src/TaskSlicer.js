@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import ViewTasks from "./ViewTasks";
 import TaskDetails from "./TaskDetails";
 import { NavLink } from "react-router-dom"
+import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd"
+
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
-  // const [updateIds, setId] = useState(() => {
-  //   return JSON.parse(localStorage.getItem("updateIds"));
-  // });
+  
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
@@ -19,10 +19,6 @@ export default function TaskSlicer() {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
-  // useEffect(() => {
-  //   console.log(updateIds);
-  //   localStorage.setItem("updateIds", JSON.stringify(updateIds))
-  // }, [updateIds]);
   
   const handleClick = event => {
     // 👇️ toggle class on click
@@ -47,16 +43,11 @@ export default function TaskSlicer() {
 
 
     function handleTaskSubmit() {
-      // let arr = taskName.split(' ')
-      // setId([...updateIds, arr[0][1]]);
-      setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
+     setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
       
       setTaskName("");
       setDescription("");
       setInputClass("hideInput");
-      // let obj = tasks.find(o => o.id.value());
-      
-      // console.log(obj);
 
     }
     return (
@@ -107,20 +98,12 @@ export default function TaskSlicer() {
   function handleDeleteTask(id) {
     setIsActive(true)
     console.log(id)
-    // let updatedId = 0;
     setTasks(tasks.filter((task) => task !== null ))
     setTasks(tasks.filter((task) => task.id !== id))
-    // setTasks(tasks.map(el => el.id >= 0 ? {
-    //   ...el,
-    //   id: updatedId++ // the new title
-    // } : el));
-    // console.log(newData)
-    // setTasks([newData])
-
-    }
+  }
     
-    function addDetails(slicerName, steps){
-      console.log("Task Clicked!");
+    function addDetails(slicerName, steps, id){
+      console.log(slicerName);
       return(
         <div className="cardContainer">
           <h2>{slicerName}</h2>
@@ -147,22 +130,59 @@ export default function TaskSlicer() {
           -when submitting tasks, it show the div and checkbox but not the text of task
           so that my next challenge.
          */}
+         <DragDropContext onDragEnd={() => {
+          console.log("drag drop event occured");
+         }}>
         <div className="taskContainer">
-        {tasks.filter(perTask => perTask !== null).map((task) => {
+        <Droppable droppableId="ROOT" type="group">
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+        {tasks.filter(perTask => perTask !== null).map((task, index) => {
+          {/* {console.log(task.id)} */}
             return <>
-            {/* <NavLink to="/taskdetails" onClick={addDetails(task.taskName)}> */}
-            <div className='animate__slideOutRight' onClick={addDetails}>
+            {/* <Draggable draggableId={task.name} key={task.name} index={index}> */}
+            {/* {console.log(task.id)} */}
+          {/* {(provided) => ( */}
+            <div className='animate__slideOutRight' onClick={()=> addDetails(task.id)}>
+         
+            {/* {console.log(task.id)} */}
+            <Draggable draggableId={tasks.id} key={tasks.id} index={index}>
+            
+            {(provided) => (
+              <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
             <ViewTasks
                   key={task.id}
                   details={task}
                   onDeleteClick={handleDeleteTask}
                 ></ViewTasks>
-              </div>
-            {/* </NavLink> */}
-            </>
+            </div>
+            )}
+            </Draggable>
+            {provided.placeholder}
+           </div>
+          
+             
+
+        
+         
+            {/* </Draggable> */}
+           </>
           })
+          
           }
+         
+          </div>
+        )}
+          </Droppable>
         </div>
+        </DragDropContext>
     </>
   );
 }
+{/* <div className='animate__slideOutRight' onClick={addDetails}>
+<ViewTasks
+      key={task.id}
+      details={task}
+      onDeleteClick={handleDeleteTask}
+    ></ViewTasks>
+  </div> */}

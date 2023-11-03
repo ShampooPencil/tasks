@@ -61,9 +61,9 @@ const reload = () => {
   console.log("Page reloaded");
   root.render(
     <GoogleOAuthProvider clientId="860796429284-3n24j5fvo8bfk85r903acb1arvejf4pj.apps.googleusercontent.com">
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
         <App />
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
     </GoogleOAuthProvider>
   );
 };

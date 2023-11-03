@@ -3,6 +3,7 @@
 import { NavLink } from "react-router-dom"
 import TaskDetails from "./TaskDetails";
 
+
 export default function ViewTasks(props) {
   const { details, onDeleteClick, theme, dropId} = props;
   // TODO: get cart from redux store
@@ -15,7 +16,7 @@ export default function ViewTasks(props) {
   // }
   return (
     <>
-    <div className={`animate__animated animate__backInDown borderColor ${details.id}`}>
+    <div className={`animate__animated animate__backInDown borderColor ${details.id}`} value={details.id}>
       {/* <NavLink to='/taskdetails' onClick={addDetails()}> */}
       <label className="task-name">
         <input type="checkbox" />
