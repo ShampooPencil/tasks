@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import ViewTasks from "./ViewTasks";
 import TaskDetails from "./TaskDetails";
 import { NavLink } from "react-router-dom"
-import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd"
+import {DragDropContext, Droppable, Draggable, resetServerContext} from "react-beautiful-dnd"
 
 export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
   
+  const handleDragDrop = (results) => {
+    console.log("HELLO THERE", results);
+  }
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
@@ -111,9 +114,7 @@ export default function TaskSlicer() {
         </div>
       )
     }
-  
-
-  return (
+return (
     <>
       {/* testing if saveTasks saves if clicked on another link and go back to task page */}
       {/* <div>{saveTasks}</div> */}
@@ -130,9 +131,7 @@ export default function TaskSlicer() {
           -when submitting tasks, it show the div and checkbox but not the text of task
           so that my next challenge.
          */}
-         <DragDropContext onDragEnd={() => {
-          console.log("drag drop event occured");
-         }}>
+         <DragDropContext onDragEnd={handleDragDrop}>
         <div className="taskContainer">
         <Droppable droppableId="ROOT" type="group">
         {(provided) => (
@@ -146,7 +145,7 @@ export default function TaskSlicer() {
             <div className='animate__slideOutRight' onClick={()=> addDetails(task.id)}>
          
             {/* {console.log(task.id)} */}
-            <Draggable draggableId={tasks.id} key={tasks.id} index={index}>
+            <Draggable key={`${task.id}`} draggableId={`${task.id}`} index={index}>
             
             {(provided) => (
               <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
@@ -158,24 +157,20 @@ export default function TaskSlicer() {
             </div>
             )}
             </Draggable>
-            {provided.placeholder}
+            {/* {provided.placeholder} */}
            </div>
-          
-             
-
-        
-         
-            {/* </Draggable> */}
+           {/* </Draggable> */}
            </>
           })
           
           }
-         
+          {provided.placeholder}
           </div>
         )}
           </Droppable>
         </div>
         </DragDropContext>
+        {/* {resetServerContext()} */}
     </>
   );
 }
