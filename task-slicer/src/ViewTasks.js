@@ -6,7 +6,6 @@ import TaskDetails from "./TaskDetails";
 
 export default function ViewTasks(props) {
   const { details, onDeleteClick, theme, dropId} = props;
-  // TODO: get cart from redux store
   // function handleDeleteTask(id) {
   //   removeTask(details.filter((product) => product.id !== id));
   // }
@@ -16,15 +15,15 @@ export default function ViewTasks(props) {
   // }
   return (
     <>
-    <div className={`animate__animated animate__backInDown borderColor ${details.id}`} value={details.id}>
-      {/* <NavLink to='/taskdetails' onClick={addDetails()}> */}
+    {/* <div className={`animate__animated animate__backInDown borderColor ${details.id}`} value={details.id}> */}
+    <div className={`borderColor ${details.id}`} value={details.id}>
       <label className="task-name">
         <input type="checkbox" />
         {details.name}
         <p className="task-description">{details.description}</p>
         <button onClick={() => onDeleteClick(details.id)}>remove</button>
       </label>
-      {/* </NavLink> */}
+      
     </div>
    </>
   );

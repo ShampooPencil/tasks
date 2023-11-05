@@ -10,7 +10,24 @@ export default function TaskSlicer() {
   });
   
   const handleDragDrop = (results) => {
-    console.log("HELLO THERE", results);
+    const {source, destination, type} = results;
+
+    if(!destination) return;
+
+    if(source.droppableId === destination.droppableId && 
+       source.index === destination.index
+      )
+      return
+
+    if(type === 'group'){
+      const reorderedTasks = [...tasks];
+
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index;
+      const [removedTasks] = reorderedTasks.splice(sourceIndex, 1);
+      reorderedTasks.splice(destinationIndex, 0, removedTasks);
+      return setTasks(reorderedTasks);
+    }
   }
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
