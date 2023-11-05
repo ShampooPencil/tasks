@@ -16,7 +16,7 @@ export default function ViewTasks(props) {
   return (
     <>
     {/* <div className={`animate__animated animate__backInDown borderColor ${details.id}`} value={details.id}> */}
-    <div className={`borderColor ${details.id}`} value={details.id}>
+    <div className={`borderColor taskItem ${details.id}`} value={details.id}>
       <label className="task-name">
         <input type="checkbox" />
         {details.name}

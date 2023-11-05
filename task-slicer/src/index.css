@@ -46,18 +46,15 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     text-align: center;
-    /* align-items: stretch; */
     background-color: #ff0659;
     top: 0;
     position: fixed;
     width: 100%;
-    /* transition: width 200ms ease; */
+    height: 10%;
     z-index: 5;
     margin-bottom: 100px;
-    /* filter: grayscale(100%) opacity(0.7); */
-    /* transition: var(--transition-speed); */
   }
 
   /* .navbar-nav {
@@ -91,12 +88,6 @@
     text-decoration: none;
   }
 
-  /* .nav-link:hover {
-    filter: grayscale(0%) opacity(1);
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-  } */
-
   .link-text {
     display: none;
     margin-left: 1rem;
@@ -115,11 +106,19 @@
     color: #df49a6;
   }
 
-  /* Container for tasks */
-  /* .container {
+  .taskAddContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    text-align: center;
+    margin: 5%;
     margin-top: 10%;
-  } */
+    z-index: 5;
 
+  }
 
   body.dark .borderColor {
     border: 0.3vw solid white;
@@ -142,13 +141,34 @@
   }
 
   .taskContainer {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* align-items: center; */
-    justify-content: flex-start;
-    align-content: flex-start;
+    align-items: center;
+    justify-content: space-evenly; 
+     align-content: flex-start; */
     margin-top: 10%;
+    text-align: center;
+    /* 
+    margin-right: 100px; */
+    /* margin-right: 50%; */
+  }
+
+  .dndTaskContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10%;
+    text-align: center;
+    /* margin-left: 100px; */
+    /* margin-left: 50%;
+    margin-right: 50%; */
+  }
+
+  .taskItem {
+    width: 40vw;
   }
 
   .taskContainer:last-of-type {
@@ -169,7 +189,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    /* align-items: center; */
   }
 
   /* .taskContainer:nth-child(odd) {
@@ -181,7 +200,10 @@
     flex-direction: row;
     justify-content: center;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+  }
 
+  .showAddBtn {
+    margin-top: 30%;
   }
 
   /* Medium screens */
@@ -193,7 +215,7 @@
       justify-content: space-between;
       text-align: center;
       /* margin-top: 25px; */
-      /* margin-bottom: 10px; */
+      margin-bottom: 10%;
     }
 
     .taskContainer {
@@ -209,6 +231,22 @@
       /* margin-left: 5%;
       margin-right: 5%; */
 
+    }
+
+    .taskAddContainer {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      text-align: center;
+      margin: 10%;
+    }
+
+    .showAddBtn {
+      margin-top: 20%;
+      margin-bottom: 10%;
     }
 
     .account-container {

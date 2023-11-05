@@ -152,7 +152,7 @@ return (
         <div className="taskContainer">
         <Droppable droppableId="ROOT" type="group">
         {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
+          <div className="dndTaskContainer" {...provided.droppableProps} ref={provided.innerRef}>
         {tasks.filter(perTask => perTask !== null).map((task, index) => {
           {/* {console.log(task.id)} */}
             return <>
@@ -174,9 +174,7 @@ return (
             </div>
             )}
             </Draggable>
-            {/* {provided.placeholder} */}
            </div>
-           {/* </Draggable> */}
            </>
           })
           
