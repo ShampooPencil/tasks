@@ -169,7 +169,7 @@
 
   .dndTaskContainer .taskItem:last-child {
     justify-self: left;
-    align-self: ;
+    align-self: center;
     height: 200px;
   }
 
