@@ -159,7 +159,7 @@ return (
             {/* <Draggable draggableId={task.name} key={task.name} index={index}> */}
             {/* {console.log(task.id)} */}
           {/* {(provided) => ( */}
-            <div className='animate__slideOutRight' onClick={()=> addDetails(task.id)}>
+            <div className='animate__slideOutRight taskItem' onClick={()=> addDetails(task.id)}>
          
             {/* {console.log(task.id)} */}
             <Draggable key={`${task.id}`} draggableId={`${task.id}`} index={index}>
