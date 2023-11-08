@@ -164,11 +164,12 @@ return (
           <div className="dndTaskContainer" {...provided.droppableProps} ref={provided.innerRef}>
         {tasks.filter(perTask => perTask !== null).map((task, index) => {
             return <>
-            <div className='animate__slideOutRight taskItem'>
+            {/* <div className='animate__slideOutRight'> */}
+            <div>
             <Draggable key={`${task.id}`} draggableId={`${task.id}`} index={index}>
             
             {(provided) => (
-              <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
+              <div className="taskItem" {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
             <ViewTasks
                   key={task.id}
                   details={task}
@@ -179,9 +180,6 @@ return (
               <button>+Details</button>
             </NavLink>
             </div> */}
-            </div>
-            )}
-            </Draggable>
             <button className="open-button" onClick={() => openDetailsCard()}>+Details</button>
               <div className="detailsCard" id="displayDetailsCard" style={(showDetails === true) ? showCard : hideCard}>
                 <h2>{details.name}</h2>
@@ -190,6 +188,17 @@ return (
                 </ul>
                 <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
               </div>
+            </div>
+            )}
+            </Draggable>
+            {/* <button className="open-button" onClick={() => openDetailsCard()}>+Details</button>
+              <div className="detailsCard" id="displayDetailsCard" style={(showDetails === true) ? showCard : hideCard}>
+                <h2>{details.name}</h2>
+                <ul>
+                  <input id="taskDetails" onChange={details.detailsChange}></input>
+                </ul>
+                <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
+              </div> */}
            </div>
            </>
           })
