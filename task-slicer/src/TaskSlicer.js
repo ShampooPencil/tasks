@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ViewTasks from "./ViewTasks";
 import TaskDetails from "./TaskDetails";
 import { NavLink } from "react-router-dom";
@@ -37,8 +37,9 @@ export default function TaskSlicer() {
   const [showInputClass, setInputClass] = useState("hideInput");
   const [showDetails, setShowDetails] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"}
-  const hideCard = {display: "none"};
+  const [currentTaskCard, setCurrentTaskCard] = useState("");
+  // const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"}
+  // const hideCard = {display: "none"};
   
   useEffect(() => {
     console.log(tasks);
@@ -127,36 +128,34 @@ function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id))
   }
     
-function openDetailsCard(){
-  console.log(showDetails)
+  // hide or show details CSS (when card(s) are shown or hidden) in the task id's attribute....style
+const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"};
+const hideCard = {display: "none"};
+
+//onClick in the task to show current task detaiils card
+function openDetailsCard(currentId){
+  console.log(showDetails);
+  setCurrentTaskCard(currentId);
+  console.log(currentTaskCard);
   if(showDetails === false){
     setShowDetails(true);
   }
-  // const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"}
- 
-
  }
+ //onClick in the current task details card to hide/exit current task
 function closeDetails(){
  setShowDetails(false);
+ setCurrentTaskCard("");
+ console.log(currentTaskCard);
 //  const hideCard = {display: "none"};
 }
 return (
     <>
-      {/* testing if saveTasks saves if clicked on another link and go back to task page */}
-      {/* <div>{saveTasks}</div> */}
-      {/* <div className="taskSlicerContainer"> */}
       <div className="taskAddContainer">
         <button className="showAddBtn" onClick={showTaskInputs}>
           +New Task
         </button>
       </div>
       {setTaskInput ? FormTask() : ""}
-
-      {/* 3/6/23
-          -adds a tasks, clicks on login page, goes back to taskSlicer page, and is still saved
-          -when submitting tasks, it show the div and checkbox but not the text of task
-          so that my next challenge.
-         */}
          <DragDropContext onDragEnd={handleDragDrop}>
         <div className="taskContainer">
         <Droppable droppableId="ROOT" type="group">
@@ -180,30 +179,31 @@ return (
               <button>+Details</button>
             </NavLink>
             </div> */}
-            <button className="open-button" onClick={() => openDetailsCard()}>+Details</button>
-              <div className="detailsCard" id="displayDetailsCard" style={(showDetails === true) ? showCard : hideCard}>
-                <h2>{details.name}</h2>
+            <button className="open-button" onClick={() => openDetailsCard(task.id)}>+Details</button>
+              {/* <div className="detailsCard" id="displayDetailsCard"> */}
+              {/* <div id={`${task.id}`} style={(showDetails === true) ? showCard : hideCard && (task.id !== true) ? hideCard : showCard}>
+                <h2>{task.name}</h2>
                 <ul>
                   <input id="taskDetails" onChange={details.detailsChange}></input>
                 </ul>
                 <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
+                </div> */}
               </div>
-            </div>
+         
             )}
             </Draggable>
-            {/* <button className="open-button" onClick={() => openDetailsCard()}>+Details</button>
-              <div className="detailsCard" id="displayDetailsCard" style={(showDetails === true) ? showCard : hideCard}>
-                <h2>{details.name}</h2>
+            </div>
+            <div id={`${task.id}`} value={`${task.id}`} style={(task.id === currentTaskCard) ? showCard : hideCard}>
+                <h2>{task.name}</h2>
                 <ul>
                   <input id="taskDetails" onChange={details.detailsChange}></input>
                 </ul>
                 <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
-              </div> */}
-           </div>
+                </div>
            </>
           })
           
-          }
+        }
           {provided.placeholder}
           </div>
         )}
