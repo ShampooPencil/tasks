@@ -105,8 +105,7 @@ export default function TaskSlicer() {
       </div>
     );
   }
-
-  // basically a dropdown and show some inputs when user wants to start a new task
+// basically a dropdown and show some inputs when user wants to start a new task
   function showTaskInputs() {
     if (showTaskInput) {  
       setTaskInput(false);
@@ -130,7 +129,6 @@ function handleDeleteTask(id) {
   // Hide or show details CSS (when card(s) are shown or hidden) in the task id's attribute....style
 const showCard = {display: "block", width: "75%", height: "75%", backgroundColor: "black", position: "fixed", border: "0.5vw solid white", zIndex: "10"};
 const hideCard = {display: "none"};
-
 //onClick in the task to show current task details card
 function openDetailsCard(currentId){
   console.log(showDetails);
@@ -142,23 +140,26 @@ function openDetailsCard(currentId){
  }
  //Form submit to send one detail to the current task from
  // the tasks card and also show the saved details on the tasks card
- // 11/11/2023 finished the function and store detail to tasks (current task)
+ // 11/11/2023 finished the function and store detail to current task (current task)
+//  function handleNameChange(e) {
+//   setTaskName(e.target.value);
+//   console.log(taskName);
+// }
 function addDetailToCurrTask(){
-  function handleDetailSubmit() {
-    setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
-     //next time store one detail to a detail array....that array then will be stored to the tasks object above...research if needed or google it.
-     setTaskName("");
-     setDescription("");
-     setInputClass("hideInput");
-
-   }
+  function handleDetailSubmit(e) {
+    // setTransactions([...transactions, 10]);
+    setDetails([...details, e.target.value])
+    console.log(details);
+    //setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
+    //next time store one detail to a detail array....that array then will be stored to the tasks object above...research if needed or google it.
+}
 return <>
 
         <input
           className={showInputClass}
           type="submit"
           value="[+]"
-          // onClick={taskName && description !== "" ? handleTaskSubmit : ""}
+          onClick={handleDetailSubmit}
         />
         </>
 
@@ -198,20 +199,7 @@ return (
                   details={task}
                   onDeleteClick={handleDeleteTask}
                 ></ViewTasks>
-            {/* <div>
-            <NavLink to="/taskdetails">
-              <button>+Details</button>
-            </NavLink>
-            </div> */}
             <button className="open-button" onClick={() => openDetailsCard(task.id)}>+Details</button>
-              {/* <div className="detailsCard" id="displayDetailsCard"> */}
-              {/* <div id={`${task.id}`} style={(showDetails === true) ? showCard : hideCard && (task.id !== true) ? hideCard : showCard}>
-                <h2>{task.name}</h2>
-                <ul>
-                  <input id="taskDetails" onChange={details.detailsChange}></input>
-                </ul>
-                <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
-                </div> */}
               </div>
          
             )}
@@ -222,6 +210,7 @@ return (
                 <ul>
                   <input id="taskDetails" onChange={details.detailsChange}></input>
                 </ul>
+                {addDetailToCurrTask}
                 <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
                 </div>
            </>
