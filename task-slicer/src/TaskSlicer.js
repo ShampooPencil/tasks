@@ -33,7 +33,7 @@ export default function TaskSlicer() {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState([]);
   const [showInputClass, setInputClass] = useState("hideInput");
   const [showDetails, setShowDetails] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -119,8 +119,7 @@ export default function TaskSlicer() {
     }
   }
   
-// for deleting a task
-
+// For deleting a task
 function handleDeleteTask(id) {
     setIsActive(true)
     console.log(id)
@@ -128,11 +127,11 @@ function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id))
   }
     
-  // hide or show details CSS (when card(s) are shown or hidden) in the task id's attribute....style
-const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"};
+  // Hide or show details CSS (when card(s) are shown or hidden) in the task id's attribute....style
+const showCard = {display: "block", width: "75%", height: "75%", backgroundColor: "black", position: "fixed", border: "0.5vw solid white", zIndex: "10"};
 const hideCard = {display: "none"};
 
-//onClick in the task to show current task detaiils card
+//onClick in the task to show current task details card
 function openDetailsCard(currentId){
   console.log(showDetails);
   setCurrentTaskCard(currentId);
@@ -141,6 +140,31 @@ function openDetailsCard(currentId){
     setShowDetails(true);
   }
  }
+ //Form submit to send one detail to the current task from
+ // the tasks card and also show the saved details on the tasks card
+ // 11/11/2023 finished the function and store detail to tasks (current task)
+function addDetailToCurrTask(){
+  function handleDetailSubmit() {
+    setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
+     //next time store one detail to a detail array....that array then will be stored to the tasks object above...research if needed or google it.
+     setTaskName("");
+     setDescription("");
+     setInputClass("hideInput");
+
+   }
+return <>
+
+        <input
+          className={showInputClass}
+          type="submit"
+          value="[+]"
+          // onClick={taskName && description !== "" ? handleTaskSubmit : ""}
+        />
+        </>
+
+}
+
+
  //onClick in the current task details card to hide/exit current task
 function closeDetails(){
  setShowDetails(false);
@@ -193,7 +217,7 @@ return (
             )}
             </Draggable>
             </div>
-            <div id={`${task.id}`} value={`${task.id}`} style={(task.id === currentTaskCard) ? showCard : hideCard}>
+            <div id={`currentTask ${task.id}`} value={`${task.id}`} style={(task.id === currentTaskCard) ? showCard : hideCard}>
                 <h2>{task.name}</h2>
                 <ul>
                   <input id="taskDetails" onChange={details.detailsChange}></input>
