@@ -33,7 +33,7 @@ export default function TaskSlicer() {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
-  const [details, setDetails] = useState([]);
+  const [details, setDetails] = useState([""]);
   const [showInputClass, setInputClass] = useState("hideInput");
   const [showDetails, setShowDetails] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -150,15 +150,15 @@ function addDetailToCurrTask(){
     // setTransactions([...transactions, 10]);
     setDetails([...details, e.target.value])
     console.log(details);
+    setDetails([""]);
     //setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
     //next time store one detail to a detail array....that array then will be stored to the tasks object above...research if needed or google it.
 }
 return <>
-
-        <input
-          className={showInputClass}
+       <input
+          className="detailBtn"
           type="submit"
-          value="[+]"
+          value={details}
           onClick={handleDetailSubmit}
         />
         </>
@@ -207,10 +207,11 @@ return (
             </div>
             <div id={`currentTask ${task.id}`} value={`${task.id}`} style={(task.id === currentTaskCard) ? showCard : hideCard}>
                 <h2>{task.name}</h2>
-                <ul>
+                {/* <ul> */}
                   <input id="taskDetails" onChange={details.detailsChange}></input>
-                </ul>
-                {addDetailToCurrTask}
+                  
+                {/* </ul> */}
+                {addDetailToCurrTask()}
                 <button onClick={() => closeDetails()}>CLOSE DETAILS</button>
                 </div>
            </>
@@ -227,10 +228,3 @@ return (
     </>
   );
 }
-{/* <div className='animate__slideOutRight' onClick={addDetails}>
-<ViewTasks
-      key={task.id}
-      details={task}
-      onDeleteClick={handleDeleteTask}
-    ></ViewTasks>
-  </div> */}
