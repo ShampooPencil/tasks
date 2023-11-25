@@ -19,9 +19,10 @@ export default function ViewTasks(props) {
     {/* taskItem */}
     <div className={`borderColor ${details.id}`} value={details.id}>
       <label className="task-name">
+        <span id="spanTask">task:</span>
         <input type="checkbox" />
-        {details.name}
-        <p className="task-description">{details.description}</p>
+          {details.name}
+        <p className="task-description"><span id="spanDescription">description:</span> {details.description}</p>
         {/* <button class="addDetailsBtn"></button> */}
         <button onClick={() => onDeleteClick(details.id)}>remove</button>
         {/* <NavLink to="/taskdetails"> */}
