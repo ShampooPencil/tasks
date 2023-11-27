@@ -9,6 +9,10 @@ export default function TaskSlicer() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks"));
   });
+
+  const [listDetails, setListDetails] = useState(() => {
+    return JSON.parse(localStorage.getItem("listDetails"))
+  })
   
   const handleDragDrop = (results) => {
     const {source, destination, type} = results;
@@ -22,7 +26,6 @@ export default function TaskSlicer() {
 
     if(type === 'group'){
       const reorderedTasks = [...tasks];
-
       const sourceIndex = source.index;
       const destinationIndex = destination.index;
       const [removedTasks] = reorderedTasks.splice(sourceIndex, 1);
@@ -33,7 +36,7 @@ export default function TaskSlicer() {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [showTaskInput, setTaskInput] = useState(false);
-  const [details, setDetails] = useState([""]);
+  const [details, setDetails] = useState("");
   const [showInputClass, setInputClass] = useState("hideInput");
   const [showDetails, setShowDetails] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -45,6 +48,10 @@ export default function TaskSlicer() {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+  useEffect(() => {
+    console.log(listDetails);
+    localStorage.setItem("details", JSON.stringify(listDetails))
+  }, [listDetails])
   
   const handleClick = event => {
     // 👇️ toggle class on click
@@ -67,15 +74,13 @@ export default function TaskSlicer() {
       console.log(description);
     }
 
-
+    //click on this btn and onClick will fire and add new task for the user
     function handleTaskSubmit() {
      setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
-      
-      setTaskName("");
-      setDescription("");
-      setInputClass("hideInput");
-
-    }
+     setTaskName("");
+     setDescription("");
+     setInputClass("hideInput");
+}
     return (
       <div className="taskAddContainer">
         {/* input for inserting task name */}
@@ -145,34 +150,52 @@ function openDetailsCard(currentId){
 //   setTaskName(e.target.value);
 //   console.log(taskName);
 // }
-function addDetailToCurrTask(){
+function addDetailToCurrTask(currId){
+  function handleCurrDetail(e){
+    setDetails(e.target.value)
+    console.log(details);
+  }
   function handleDetailSubmit(e) {
     // setTransactions([...transactions, 10]);
-    setDetails([...details, e.target.value])
-    console.log(details);
-    setDetails([""]);
+    // setDetails(e.target.value)
+    // console.log(details);
+
+    setDetails("");
     //setTasks([...tasks, {id: taskName.split(), name: taskName, description: description }]);
     //next time store one detail to a detail array....that array then will be stored to the tasks object above...research if needed or google it.
 }
 return <>
+    <div>
+       <input 
+         id={details} 
+         type="type" 
+         value={details}
+         onChange={handleCurrDetail}/>
        <input
           className="detailBtn"
           type="submit"
-          value={details}
+          value="+"
           onClick={handleDetailSubmit}
         />
+        {/* {currId.filter(perTask => perTask !== null).map((task, index)
+        return<>
+
+
+        </>
+        )} */}
+     </div>
         </>
 
 }
 
-
- //onClick in the current task details card to hide/exit current task
+//onClick in the current task details card to hide/exit current task
 function closeDetails(){
  setShowDetails(false);
  setCurrentTaskCard("");
  console.log(currentTaskCard);
 //  const hideCard = {display: "none"};
 }
+
 return (
     <>
       <div className="taskAddContainer">
@@ -208,7 +231,7 @@ return (
             <div id={`currentTask ${task.id}`} value={`${task.id}`} style={(task.id === currentTaskCard) ? showCard : hideCard}>
                 <h2>{task.name}</h2>
                 {/* <ul> */}
-                  <input id="taskDetails" onChange={details.detailsChange}></input>
+                 
                   
                 {/* </ul> */}
                 {addDetailToCurrTask()}
