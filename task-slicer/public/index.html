@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -33,9 +34,12 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="react-root">
-    <a href="#"
-    onClick="window.displayPreferenceModal();return false;"
-    id="termly-consent-preferences">Consent Preferences</a>
+    <a href="#" onClick="window.displayPreferenceModal();return false;" id="termly-consent-preferences">Consent
+      Preferences</a>
+  </div>
+  <div style="color: #595959;font-size: 14px;font-family: Arial;padding-top:16px;">
+    This cookie policy was created using Termly's <a style="color: rgb(48, 48, 241) !important;"
+      href="https://termly.io/products/cookie-consent-manager/">Cookie Consent Manager</a>.
   </div>
   <!--
       This HTML file is a template.
@@ -47,13 +51,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script
-  type="text/javascript"
-  src="https://app.termly.io/embed.min.js"
-  data-auto-block="on"
-  data-website-uuid="42811bf3-3efd-4a28-b11f-68a2977f6c4e"
-></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="on"
+    data-website-uuid="42811bf3-3efd-4a28-b11f-68a2977f6c4e"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

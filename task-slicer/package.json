@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@react-native-community/checkbox": "^0.5.14",
     "@react-oauth/google": "^0.10.0",
     "@supabase/supabase-js": "^2.19.0",

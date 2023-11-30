@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ViewTasks from "./ViewTasks";
+import autoAnimate from "@formkit/auto-animate";
 import TaskDetails from "./TaskDetails";
 import { NavLink } from "react-router-dom";
 import {DragDropContext, Droppable, Draggable, resetServerContext} from "react-beautiful-dnd";
@@ -41,10 +42,18 @@ export default function TaskSlicer() {
   const [showDetails, setShowDetails] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [currentTaskCard, setCurrentTaskCard] = useState("");
-  // const showCard = {display: "block", width: "100%", position: "fixed", border: "0.5vw solid black", zIndex: "10"}
-  // const hideCard = {display: "none"};
   
+  //using autoAnimate divs etc
+  const [open, setOpen] = useState(false);
+  const parentRef = useRef();
   useEffect(() => {
+    if (parentRef.current) {
+      autoAnimate(parentRef.current);
+    }
+  }, [parentRef]);
+  const showMore = () => setOpen(!open);
+
+useEffect(() => {
     console.log(tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -84,30 +93,30 @@ export default function TaskSlicer() {
     return (
       <div className="taskAddContainer">
         {/* input for inserting task name */}
+        {open && (
+        <>
         <input
-          className={showInputClass}
-          id="taskName"
-          type="text"
-          placeholder="Task"
-          value={taskName}
-          onChange={handleNameChange}
-        />
-        {/* input for inserting task name */}
-        <input
-          id="description"
-          className={showInputClass}
-          type="text"
-          placeholder="Enter Description"
-          value={description}
-          onChange={handleDescriptionChange}
-        />
-        <input
-          className={showInputClass}
-          type="submit"
-          value="[+]"
-          onClick={taskName && description !== "" ? handleTaskSubmit : ""}
-        />
+            className={showInputClass}
+            id="taskName"
+            type="text"
+            placeholder="Task"
+            value={taskName}
+            onChange={handleNameChange} />
+            <input
+              id="description"
+              className={showInputClass}
+              type="text"
+              placeholder="Enter Description"
+              value={description}
+              onChange={handleDescriptionChange} />
+            <input
+              className={showInputClass}
+              type="submit"
+              value="[+]"
+              onClick={taskName && description !== "" ? handleTaskSubmit : ""} /></>
+        )}
       </div>
+
     );
   }
 // basically a dropdown and show some inputs when user wants to start a new task
@@ -198,8 +207,8 @@ function closeDetails(){
 
 return (
     <>
-      <div className="taskAddContainer">
-        <button className="showAddBtn" onClick={showTaskInputs}>
+      <div className="taskAddContainer" ref={parentRef}>
+        <button className="showAddBtn" onClick={() => showTaskInputs && showMore}>
           +New Task
         </button>
       </div>

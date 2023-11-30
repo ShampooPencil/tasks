@@ -48,7 +48,7 @@ function Login() {
             {/* <br /> */}
             {profile ? (
                 <div className='account-container'>
-                    <img src={profile.picture} alt="profile pic" />
+                    <img src={profile.picture} alt="profile pic" referrerPolicy="no-referrer"  />
                     <h3>{profile.email}</h3>
                     <p>Name: {profile.name}</p>
                     {/* <p>Email Address: {profile.email}</p> */}

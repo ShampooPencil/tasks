@@ -4,6 +4,7 @@ import "./index.css";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import autoAnimate from '@formkit/auto-animate'
 import NavBar from "./NavBar.js";
 import TaskSlicer from "./TaskSlicer.js";
 import Login from "./Login";
